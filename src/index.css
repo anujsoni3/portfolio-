@@ -1,14 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar */
+/* ========== Light Mode (default) ========== */
+:root {
+  --bg-main: #F6F4F1;
+  --bg-section: #ECE9E4;
+  --bg-card: #FFFFFF;
+  --border: #E1DED8;
+
+  --text-primary: #1C1C1E;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --text-highlight: #2B2F77;
+
+  --accent-primary: #2B2F77;
+  --accent-secondary: #C25B2A;
+  --accent-soft: #2F6F6D;
+  --accent-sub: #8C7AE6;
+
+  --terminal-bg: #F1EFEA;
+  --terminal-success: #2F6F4E;
+  --terminal-info: #2B3A67;
+  --terminal-warn: #B45309;
+  --terminal-cursor: #C25B2A;
+
+  --accent-primary-glow: rgba(43, 47, 119, 0.25);
+  --accent-sub-glow: rgba(140, 122, 230, 0.25);
+  --terminal-success-glow: rgba(47, 111, 78, 0.25);
+
+  --btn-primary-bg: #2B2F77;
+  --btn-primary-hover: #3C3FA0;
+  --btn-secondary-border: #2B2F77;
+  --btn-secondary-hover-bg: rgba(43, 47, 119, 0.08);
+
+  --nav-bg: rgba(246, 244, 241, 0.85);
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 18px 45px rgba(0,0,0,0.12);
+
+  --gradient-bg: linear-gradient(120deg, #F6F4F1, #ECE9E4, #F6F4F1);
+}
+
+/* ========== Dark Mode ========== */
+.dark {
+  --bg-main: #0D1117;
+  --bg-section: #161B22;
+  --bg-card: #1C2128;
+  --border: #30363D;
+
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+  --text-muted: #6E7681;
+  --text-highlight: #A5D6FF;
+
+  --accent-primary: #7C8AFF;
+  --accent-secondary: #E8875B;
+  --accent-soft: #56D4CF;
+  --accent-sub: #B8A9F0;
+
+  --terminal-bg: #161B22;
+  --terminal-success: #56D49B;
+  --terminal-info: #79C0FF;
+  --terminal-warn: #E3B341;
+  --terminal-cursor: #E8875B;
+
+  --accent-primary-glow: rgba(124, 138, 255, 0.3);
+  --accent-sub-glow: rgba(184, 169, 240, 0.3);
+  --terminal-success-glow: rgba(86, 212, 155, 0.3);
+
+  --btn-primary-bg: #7C8AFF;
+  --btn-primary-hover: #9BA5FF;
+  --btn-secondary-border: #7C8AFF;
+  --btn-secondary-hover-bg: rgba(124, 138, 255, 0.12);
+
+  --nav-bg: rgba(13, 17, 23, 0.85);
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  --card-shadow-hover: 0 18px 45px rgba(0,0,0,0.4);
+
+  --gradient-bg: linear-gradient(120deg, #0D1117, #161B22, #0D1117);
+}
+
+/* ========== Base Styles ========== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom selection colors */
+::selection {
+  background-color: var(--accent-primary-glow);
+  color: var(--text-primary);
+}
+
+/* ========== Scrollbar ========== */
 .scrollbar-thin {
   scrollbar-width: thin;
 }
 
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--accent-primary-glow);
+  border-radius: 9999px;
+}
+
 .scrollbar-thumb-cyan-bright\/30::-webkit-scrollbar-thumb {
-  background-color: rgba(56, 189, 248, 0.3);
+  background-color: var(--accent-primary-glow);
   border-radius: 9999px;
 }
 
@@ -16,22 +126,7 @@
   background-color: transparent;
 }
 
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom selection colors */
-::selection {
-  background-color: rgba(56, 189, 248, 0.3);
-  color: #E0E8F9;
-}
-
-/* Hide scrollbar for terminal content but keep functionality */
+/* Terminal scrollbar */
 .terminal-scroll::-webkit-scrollbar {
   width: 4px;
 }
@@ -41,17 +136,28 @@ html {
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.3);
+  background: var(--accent-primary-glow);
   border-radius: 2px;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.5);
+  background: var(--accent-primary);
 }
 
-/* Glowing text effect */
+/* ========== Utility Classes ========== */
 .glow-text {
   text-shadow: 0 0 10px currentColor;
+}
+
+/* Subtle grain texture overlay */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* Animated gradient background */
@@ -65,7 +171,7 @@ html {
 }
 
 .gradient-animate {
-  background: linear-gradient(-45deg, #0F0C29, #24243e, #313862, #0F0C29);
+  background: var(--gradient-bg);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }

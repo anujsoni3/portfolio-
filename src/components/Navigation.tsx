@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X, Terminal, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface NavigationProps {
   userName: string;
@@ -10,6 +11,7 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ userName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { isDark, toggleTheme } = useTheme();
 
   const navItems = [
     { path: '/', label: 'home' },
@@ -22,13 +24,16 @@ const Navigation: React.FC<NavigationProps> = ({ userName }) => {
   ];
 
   return (
-    <nav className="bg-black/20 backdrop-blur-sm border-b border-cyan-bright/20 sticky top-0 z-50">
+    <nav
+      className="backdrop-blur-md border-b border-border-theme sticky top-0 z-50 transition-colors duration-300"
+      style={{ backgroundColor: 'var(--nav-bg)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 text-cyan-bright hover:text-accent-purple transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-accent-primary hover:text-accent-sub transition-colors">
             <Terminal size={20} />
-            <span className="font-bold hidden sm:inline">anuj@portfolio</span>
-            <span className="font-bold sm:hidden">anuj</span>
+            <span className="font-bold hidden sm:inline font-mono">anuj@portfolio</span>
+            <span className="font-bold sm:hidden font-mono">anuj</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,22 +42,41 @@ const Navigation: React.FC<NavigationProps> = ({ userName }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm transition-colors hover:text-cyan-bright ${
-                  location.pathname === item.path
-                    ? 'text-accent-purple'
-                    : 'text-soft-blue/80'
-                }`}
+                className={`text-sm font-mono transition-colors hover:text-accent-primary ${location.pathname === item.path
+                    ? 'text-accent-sub font-semibold'
+                    : 'text-text-secondary'
+                  }`}
               >
                 ./{item.label}
               </Link>
             ))}
+
+            {/* Theme Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border border-border-theme text-text-secondary hover:text-accent-primary hover:border-accent-primary transition-all duration-200"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            </motion.button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border border-border-theme text-text-secondary hover:text-accent-primary transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            </motion.button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-soft-blue hover:text-cyan-bright transition-colors"
+              className="text-text-primary hover:text-accent-primary transition-colors"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -65,7 +89,7 @@ const Navigation: React.FC<NavigationProps> = ({ userName }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden py-4 border-t border-cyan-bright/20"
+            className="md:hidden py-4 border-t border-border-theme"
           >
             <div className="space-y-2">
               {navItems.map((item) => (
@@ -73,11 +97,10 @@ const Navigation: React.FC<NavigationProps> = ({ userName }) => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 text-sm transition-colors hover:text-cyan-bright ${
-                    location.pathname === item.path
-                      ? 'text-accent-purple'
-                      : 'text-soft-blue/80'
-                  }`}
+                  className={`block px-3 py-2 text-sm font-mono transition-colors hover:text-accent-primary ${location.pathname === item.path
+                      ? 'text-accent-sub font-semibold'
+                      : 'text-text-secondary'
+                    }`}
                 >
                   ./{item.label}
                 </Link>

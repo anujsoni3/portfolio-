@@ -23,7 +23,7 @@ function App() {
       setUserName(storedName);
       setShowStartup(false);
     }
-    
+
   }, []);
 
   const handleStartupComplete = (name: string) => {
@@ -34,24 +34,24 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-deep-navy text-soft-blue font-mono overflow-x-hidden">
+      <div className="min-h-screen bg-bg-main text-text-primary font-sans overflow-x-hidden grain-overlay transition-colors duration-300">
         <CursorEffect />
-        
-            <Router key="main">
-              <Layout userName={userName}>
-                <Routes>
-                  <Route path="/" element={<Home userName={userName} />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/experience" element={<Experience />} />
-                  <Route path="/skills" element={<Skills />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/achievements" element={<Achievements />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </Layout>
-            </Router>
-          
+
+        <Router key="main">
+          <Layout userName={userName}>
+            <Routes>
+              <Route path="/" element={<Home userName={userName} />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/achievements" element={<Achievements />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+        </Router>
+
       </div>
     </ThemeProvider>
   );

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Database, Brain, Sparkles, Terminal, Zap } from 'lucide-react';
 import HeroCLI from '../components/HeroCLI';
+import { GridScan } from '../components/GridScan';
+import { useTheme } from '../context/ThemeContext';
 
 interface HomeProps {
   userName: string;
@@ -12,10 +14,11 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+  const { isDark } = useTheme();
 
   const roles = [
     'Full Stack Developer',
-    'ML Enthusiast', 
+    'ML Enthusiast',
     'Problem Solver',
     'Code Architect'
   ];
@@ -28,22 +31,22 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
   ];
 
   const featuredSkills = [
-    { 
-      icon: Code, 
-      name: 'Full Stack Development', 
-      color: 'text-cyan-bright',
+    {
+      icon: Code,
+      name: 'Full Stack Development',
+      color: 'text-accent-primary',
       description: 'React, Node.js, Python, Django'
     },
-    { 
-      icon: Database, 
-      name: 'Database Management', 
-      color: 'text-accent-purple',
+    {
+      icon: Database,
+      name: 'Database Management',
+      color: 'text-accent-sub',
       description: 'PostgreSQL, MongoDB, Redis'
     },
-    { 
-      icon: Brain, 
-      name: 'Machine Learning', 
-      color: 'text-terminal-green',
+    {
+      icon: Brain,
+      name: 'Machine Learning',
+      color: 'text-accent-soft',
       description: 'TensorFlow, Scikit-learn, Pandas'
     },
   ];
@@ -59,7 +62,7 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
   useEffect(() => {
     const currentRoleText = roles[currentRole];
     let index = 0;
-    
+
     const typeInterval = setInterval(() => {
       if (index <= currentRoleText.length) {
         setDisplayText(currentRoleText.slice(0, index));
@@ -81,29 +84,30 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 py-12 sm:py-20 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-cyan-bright/20 rounded-full"
-              initial={{ 
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
-                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                opacity: 0 
-              }}
-              animate={{ 
-                y: [null, -100],
-                opacity: [0, 1, 0]
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
+        {/* GridScan 3D Background */}
+        <div className="absolute inset-0 z-0" style={{ opacity: isDark ? 1 : 0.45 }}>
+          <GridScan
+            sensitivity={0.55}
+            lineThickness={isDark ? 1 : 0.6}
+            linesColor={isDark ? '#392e4e' : '#D8D4E8'}
+            gridScale={0.1}
+            scanColor={isDark ? '#FF9FFC' : '#8C7AE6'}
+            scanOpacity={isDark ? 0.4 : 0.2}
+            enablePost
+            bloomIntensity={isDark ? 0.6 : 0.15}
+            chromaticAberration={isDark ? 0.002 : 0.001}
+            noiseIntensity={0.01}
+          />
         </div>
+        {/* Gradient overlay for text readability */}
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background: isDark
+              ? 'linear-gradient(to right, rgba(13,17,23,0.7) 0%, rgba(13,17,23,0.3) 50%, transparent 100%)'
+              : 'linear-gradient(to right, rgba(246,244,241,0.85) 0%, rgba(246,244,241,0.5) 50%, transparent 100%)'
+          }}
+        />
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
           <motion.div
@@ -119,24 +123,24 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="flex items-center gap-2 mb-4"
               >
-                <Sparkles className="text-cyan-bright" size={18} />
-                <span className="text-cyan-bright text-sm font-medium">Welcome to my digital universe</span>
+                <Sparkles className="text-accent-secondary" size={18} />
+                <span className="text-accent-secondary text-sm font-medium">Welcome to my digital universe</span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-text-primary"
               >
                 Hi {userName} 👋<br />
-                <span className="text-cyan-bright">I'm Anuj Soni</span><br />
+                <span className="text-accent-primary">I'm Anuj Soni</span><br />
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-accent-purple">{displayText}</span>
+                  <span className="text-accent-sub">{displayText}</span>
                   <motion.span
                     animate={{ opacity: isTyping ? [1, 0] : 1 }}
                     transition={{ duration: 0.5, repeat: isTyping ? Infinity : 0 }}
-                    className="text-cyan-bright font-bold"
+                    className="text-accent-secondary font-bold"
                   >
                     |
                   </motion.span>
@@ -147,11 +151,11 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="text-lg sm:text-xl text-soft-blue/80 mb-6 sm:mb-8 leading-relaxed"
+                className="text-lg sm:text-xl text-text-secondary mb-6 sm:mb-8 leading-relaxed"
               >
-                Computer Science student at <span className="text-cyan-bright font-semibold">IIIT Nagpur</span>, 
-                passionate about building innovative solutions at the intersection of technology and creativity. 
-                Recently awarded <span className="text-terminal-green font-semibold">Best Intern</span> at NHPC Limited.
+                Computer Science student at <span className="text-accent-primary font-semibold">IIIT Nagpur</span>,
+                passionate about building innovative solutions at the intersection of technology and creativity.
+                Recently awarded <span className="text-terminal-success font-semibold">Best Intern</span> at NHPC Limited.
               </motion.p>
 
               {/* Highlights */}
@@ -167,9 +171,9 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
-                    className="flex items-center gap-2 text-soft-blue/70"
+                    className="flex items-center gap-2 text-text-secondary"
                   >
-                    <Zap className="text-terminal-green flex-shrink-0" size={14} />
+                    <Zap className="text-accent-secondary flex-shrink-0" size={14} />
                     <span className="text-sm">{highlight}</span>
                   </motion.div>
                 ))}
@@ -190,11 +194,12 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-black/30 border border-cyan-bright/20 rounded-lg p-3 sm:p-4 text-center backdrop-blur-sm hover:border-cyan-bright/50 transition-all duration-300"
+                  className="bg-bg-card border border-border-theme rounded-lg p-3 sm:p-4 text-center backdrop-blur-sm hover:shadow-card-hover transition-all duration-300"
+                  style={{ boxShadow: 'var(--card-shadow)' }}
                 >
-                  <stat.icon className="text-cyan-bright mx-auto mb-2" size={20} />
-                  <div className="text-lg sm:text-xl font-bold text-soft-blue">{stat.value}</div>
-                  <div className="text-xs text-soft-blue/60">{stat.label}</div>
+                  <stat.icon className="text-accent-primary mx-auto mb-2" size={20} />
+                  <div className="text-lg sm:text-xl font-bold text-text-primary">{stat.value}</div>
+                  <div className="text-xs text-text-muted">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -209,7 +214,13 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/projects"
-                  className="bg-accent-purple hover:bg-accent-purple/80 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 justify-center group shadow-lg hover:shadow-accent-purple/25 text-sm sm:text-base"
+                  className="text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 justify-center group text-sm sm:text-base"
+                  style={{
+                    backgroundColor: 'var(--btn-primary-bg)',
+                    boxShadow: '0 4px 14px var(--accent-primary-glow)'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--btn-primary-hover)'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--btn-primary-bg)'}
                 >
                   View My Work
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -218,7 +229,17 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/contact"
-                  className="border-2 border-cyan-bright text-cyan-bright hover:bg-cyan-bright hover:text-deep-navy px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 justify-center shadow-lg hover:shadow-cyan-bright/25 text-sm sm:text-base"
+                  className="border-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 justify-center text-sm sm:text-base"
+                  style={{
+                    borderColor: 'var(--btn-secondary-border)',
+                    color: 'var(--accent-primary)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--btn-secondary-hover-bg)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
                 >
                   Get In Touch
                 </Link>
@@ -239,16 +260,16 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
       </section>
 
       {/* Featured Skills Section */}
-      <section className="py-12 sm:py-20 px-4 bg-black/10 relative">
+      <section className="py-12 sm:py-20 px-4 bg-bg-section relative">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-text-primary"
           >
-            <span className="text-accent-purple">Featured</span> Skills
+            <span className="text-accent-sub">Featured</span> Skills
           </motion.h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredSkills.map((skill, index) => (
@@ -258,12 +279,13 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.6 }}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
-                className="bg-black/30 border border-cyan-bright/20 rounded-lg p-6 sm:p-8 text-center hover:border-cyan-bright/50 transition-all duration-300 backdrop-blur-sm group"
+                className="bg-bg-card border border-border-theme rounded-lg p-6 sm:p-8 text-center hover:shadow-card-hover transition-all duration-300 backdrop-blur-sm group"
+                style={{ boxShadow: 'var(--card-shadow)' }}
               >
                 <motion.div
                   whileHover={{ rotate: 360 }}
@@ -272,8 +294,8 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                 >
                   <skill.icon size={40} className={`${skill.color} mx-auto group-hover:drop-shadow-lg`} />
                 </motion.div>
-                <h3 className="text-lg sm:text-xl font-semibold text-soft-blue mb-3">{skill.name}</h3>
-                <p className="text-soft-blue/70 text-sm">{skill.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-text-primary mb-3">{skill.name}</h3>
+                <p className="text-text-muted text-sm">{skill.description}</p>
               </motion.div>
             ))}
           </div>
@@ -288,18 +310,23 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-black/30 border border-cyan-bright/20 rounded-lg p-8 sm:p-12 backdrop-blur-sm"
+            className="bg-bg-card border border-border-theme rounded-lg p-8 sm:p-12 backdrop-blur-sm"
+            style={{ boxShadow: 'var(--card-shadow)' }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-soft-blue mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-4">
               Ready to build something amazing together?
             </h2>
-            <p className="text-soft-blue/80 mb-6 sm:mb-8 text-base sm:text-lg">
+            <p className="text-text-secondary mb-6 sm:mb-8 text-base sm:text-lg">
               I'm always excited to work on innovative projects and collaborate with fellow developers.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-terminal-green hover:bg-terminal-green/80 text-deep-navy px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-terminal-green/25 text-sm sm:text-base"
+                className="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base"
+                style={{
+                  backgroundColor: 'var(--accent-soft)',
+                  boxShadow: '0 4px 14px var(--terminal-success-glow)'
+                }}
               >
                 <Sparkles size={18} />
                 Let's Connect

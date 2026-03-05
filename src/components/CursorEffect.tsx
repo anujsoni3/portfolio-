@@ -42,7 +42,7 @@ const CursorEffect: React.FC = () => {
     };
 
     window.addEventListener('mousemove', updatePosition);
-    
+
     return () => {
       window.removeEventListener('mousemove', updatePosition);
       clearTimeout(moveTimeout);
@@ -52,7 +52,7 @@ const CursorEffect: React.FC = () => {
   // Animate and remove stars
   useEffect(() => {
     const interval = setInterval(() => {
-      setStars(prev => 
+      setStars(prev =>
         prev
           .map(star => ({
             ...star,
@@ -76,8 +76,11 @@ const CursorEffect: React.FC = () => {
           transform: `translate(${position.x - 12}px, ${position.y - 12}px) scale(${isMoving ? 1.2 : 1})`,
         }}
       >
-        <div className="w-full h-full bg-cyan-bright/40 rounded-full animate-pulse">
-          <div className="w-2 h-2 bg-cyan-bright rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="w-full h-full rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-primary-glow)' }}>
+          <div
+            className="w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            style={{ backgroundColor: 'var(--accent-primary)' }}
+          />
         </div>
       </div>
 
@@ -93,7 +96,7 @@ const CursorEffect: React.FC = () => {
             transform: `translate(-50%, -50%) scale(${star.scale})`,
           }}
         >
-          <svg width="8" height="8" viewBox="0 0 8 8" className="text-cyan-bright">
+          <svg width="8" height="8" viewBox="0 0 8 8" style={{ color: 'var(--accent-sub)' }}>
             <path
               d="M4 0L4.9 2.1L7 1L5.9 3.1L8 4L5.9 4.9L7 7L4.9 5.9L4 8L3.1 5.9L1 7L2.1 4.9L0 4L2.1 3.1L1 1L3.1 2.1Z"
               fill="currentColor"

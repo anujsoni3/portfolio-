@@ -1,17 +1,37 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'deep-navy': '#0F0C29',
-        'soft-blue': '#E0E8F9',
-        'accent-purple': '#A855F7',
-        'cyan-bright': '#38BDF8',
-        'terminal-green': '#00FF41',
+        // Semantic theme colors (resolve via CSS variables)
+        'bg-main': 'var(--bg-main)',
+        'bg-section': 'var(--bg-section)',
+        'bg-card': 'var(--bg-card)',
+        'border-theme': 'var(--border)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-muted': 'var(--text-muted)',
+        'accent-primary': 'var(--accent-primary)',
+        'accent-secondary': 'var(--accent-secondary)',
+        'accent-soft': 'var(--accent-soft)',
+        'accent-sub': 'var(--accent-sub)',
+        'terminal-bg': 'var(--terminal-bg)',
+        'terminal-success': 'var(--terminal-success)',
+        'terminal-info': 'var(--terminal-info)',
+        'terminal-warn': 'var(--terminal-warn)',
+        'terminal-cursor': 'var(--terminal-cursor)',
+        // Legacy aliases for compatibility
+        'deep-navy': 'var(--bg-main)',
+        'soft-blue': 'var(--text-primary)',
+        'accent-purple': 'var(--accent-sub)',
+        'cyan-bright': 'var(--accent-primary)',
+        'terminal-green': 'var(--terminal-success)',
       },
       fontFamily: {
         'mono': ['JetBrains Mono', 'IBM Plex Mono', 'Consolas', 'monospace'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'cursor-blink': 'blink 1s infinite',
@@ -30,8 +50,8 @@ export default {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 5px #38BDF8, 0 0 10px #38BDF8, 0 0 15px #38BDF8' },
-          '100%': { boxShadow: '0 0 10px #38BDF8, 0 0 20px #38BDF8, 0 0 30px #38BDF8' },
+          '0%': { boxShadow: '0 0 5px var(--accent-primary), 0 0 10px var(--accent-primary)' },
+          '100%': { boxShadow: '0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
@@ -42,9 +62,11 @@ export default {
         'xs': '2px',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(56, 189, 248, 0.3)',
-        'glow-purple': '0 0 20px rgba(168, 85, 247, 0.3)',
-        'glow-green': '0 0 20px rgba(0, 255, 65, 0.3)',
+        'card': '0 10px 30px rgba(0,0,0,0.08)',
+        'card-hover': '0 18px 45px rgba(0,0,0,0.12)',
+        'glow': '0 0 20px var(--accent-primary-glow)',
+        'glow-purple': '0 0 20px var(--accent-sub-glow)',
+        'glow-green': '0 0 20px var(--terminal-success-glow)',
       },
     },
   },

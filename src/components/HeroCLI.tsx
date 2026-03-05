@@ -38,14 +38,14 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const cmd = input.toLowerCase().trim();
-    
+
     if (cmd) {
       setIsProcessing(true);
       const newHistory = [...history, `anuj@portfolio:~$ ${input}`];
-      
+
       // Simulate processing delay for better UX
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       if (cmd === 'clear') {
         setHistory([]);
       } else if (cmd === 'resume') {
@@ -74,10 +74,10 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
         newHistory.push(`❌ Command not found: ${cmd}. Type 'help' for available commands.`);
         setHistory(newHistory);
       }
-      
+
       setIsProcessing(false);
     }
-    
+
     setInput('');
   };
 
@@ -100,39 +100,40 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 0.3, duration: 0.6 }}
-      className="bg-black/60 border border-cyan-bright/30 rounded-lg p-4 sm:p-6 backdrop-blur-md max-w-2xl w-full shadow-2xl hover:border-cyan-bright/50 transition-all duration-300"
+      className="bg-terminal-bg border border-border-theme rounded-lg p-4 sm:p-6 backdrop-blur-md max-w-2xl w-full transition-all duration-300"
+      style={{ boxShadow: 'var(--card-shadow)' }}
     >
       {/* Terminal Header */}
       <div className="flex items-center gap-2 mb-4">
-        <motion.div 
+        <motion.div
           className="w-3 h-3 bg-red-500 rounded-full"
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.2 }}
         />
-        <motion.div 
+        <motion.div
           className="w-3 h-3 bg-yellow-500 rounded-full"
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.2 }}
         />
-        <motion.div 
+        <motion.div
           className="w-3 h-3 bg-green-500 rounded-full"
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.2 }}
         />
-        <span className="ml-4 text-soft-blue/70 text-sm flex items-center gap-2">
+        <span className="ml-4 text-text-muted text-sm flex items-center gap-2 font-mono">
           <span>Terminal</span>
           <motion.div
             animate={{ opacity: [1, 0.5, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-2 h-2 bg-terminal-green rounded-full"
+            className="w-2 h-2 bg-terminal-success rounded-full"
           />
         </span>
       </div>
 
       {/* Terminal Content */}
-      <div 
+      <div
         id="terminal-content"
-        className="space-y-1 mb-4 max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-bright/30 scrollbar-track-transparent"
+        className="space-y-1 mb-4 max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-bright/30 scrollbar-track-transparent font-mono"
       >
         <AnimatePresence>
           {history.map((line, index) => (
@@ -144,24 +145,24 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
               className="text-sm break-words"
             >
               {line.startsWith('anuj@portfolio:~$') ? (
-                <span className="text-accent-purple font-medium">{line}</span>
+                <span className="text-accent-primary font-medium">{line}</span>
               ) : (
-                <span className="text-terminal-green">{line}</span>
+                <span className="text-terminal-success">{line}</span>
               )}
             </motion.div>
           ))}
         </AnimatePresence>
-        
+
         {isProcessing && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-sm text-cyan-bright flex items-center gap-2"
+            className="text-sm text-accent-primary flex items-center gap-2"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              className="w-3 h-3 border border-cyan-bright border-t-transparent rounded-full"
+              className="w-3 h-3 border border-accent-primary border-t-transparent rounded-full"
             />
             Processing...
           </motion.div>
@@ -169,21 +170,22 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
       </div>
 
       {/* Input Area */}
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
-        <span className="text-accent-purple font-medium text-sm sm:text-base">anuj@portfolio:~$</span>
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 font-mono">
+        <span className="text-accent-primary font-medium text-sm sm:text-base">anuj@portfolio:~$</span>
         <input
           ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           disabled={isProcessing}
-          className="bg-transparent border-none outline-none text-soft-blue flex-1 caret-cyan-bright disabled:opacity-50 text-sm sm:text-base"
+          className="bg-transparent border-none outline-none text-text-primary flex-1 disabled:opacity-50 text-sm sm:text-base"
+          style={{ caretColor: 'var(--terminal-cursor)' }}
           placeholder="Type 'help' for commands..."
         />
         <motion.span
           animate={{ opacity: isProcessing ? [1, 0] : 1 }}
           transition={{ duration: 0.8, repeat: isProcessing ? Infinity : 0 }}
-          className="text-cyan-bright font-bold"
+          className="text-terminal-cursor font-bold"
         >
           |
         </motion.span>
@@ -197,7 +199,7 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setInput(cmd)}
-            className="text-xs bg-cyan-bright/10 text-cyan-bright px-2 py-1 rounded border border-cyan-bright/30 hover:bg-cyan-bright/20 transition-all duration-200"
+            className="text-xs font-mono bg-bg-section text-accent-primary px-2 py-1 rounded border border-border-theme hover:border-accent-primary transition-all duration-200"
           >
             {cmd}
           </motion.button>

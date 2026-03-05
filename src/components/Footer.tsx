@@ -3,10 +3,10 @@ import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black/20 backdrop-blur-sm border-t border-cyan-bright/20 py-8">
+    <footer className="bg-bg-section backdrop-blur-sm border-t border-border-theme py-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-soft-blue/60 text-sm mb-4 md:mb-0">
+          <div className="text-text-muted text-sm mb-4 md:mb-0">
             © 2025 Anuj Soni. Built with React & TypeScript.
           </div>
           <div className="flex items-center gap-4">
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               href="https://github.com/anujsoni"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-soft-blue/60 hover:text-cyan-bright transition-colors"
+              className="text-text-muted hover:text-accent-primary transition-colors"
             >
               <Github size={20} />
             </a>
@@ -22,13 +22,13 @@ const Footer: React.FC = () => {
               href="https://linkedin.com/in/anujsoni"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-soft-blue/60 hover:text-cyan-bright transition-colors"
+              className="text-text-muted hover:text-accent-primary transition-colors"
             >
               <Linkedin size={20} />
             </a>
             <a
               href="mailto:anuj@example.com"
-              className="text-soft-blue/60 hover:text-cyan-bright transition-colors"
+              className="text-text-muted hover:text-accent-primary transition-colors"
             >
               <Mail size={20} />
             </a>
