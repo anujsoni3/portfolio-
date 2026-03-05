@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building, Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Building, Calendar, MapPin, Award } from 'lucide-react';
 
 const Experience: React.FC = () => {
   return (
@@ -13,10 +13,10 @@ const Experience: React.FC = () => {
         >
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-accent-purple">Experience</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+              <span className="text-accent-sub">Experience</span>
             </h1>
-            <p className="text-xl text-soft-blue/80">
+            <p className="text-xl text-text-secondary">
               My professional journey and internship experience
             </p>
           </div>
@@ -26,103 +26,114 @@ const Experience: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-black/30 border border-cyan-bright/20 rounded-lg p-8"
+            className="bg-bg-card border border-border-theme rounded-lg p-8 transition-colors duration-300"
+            style={{ boxShadow: 'var(--card-shadow)' }}
           >
             <div className="flex items-start gap-4 mb-6">
-              <div className="bg-accent-purple/20 p-3 rounded-lg">
-                <Building className="text-accent-purple" size={24} />
+              <div className="bg-accent-primary/10 p-3 rounded-lg">
+                <Building className="text-accent-primary" size={24} />
               </div>
               <div className="flex-1">
-                <h2 className="text-2xl font-bold text-cyan-bright mb-2">
+                <h2 className="text-2xl font-bold text-accent-primary mb-1">
                   Software Development Intern
                 </h2>
-                <h3 className="text-xl text-soft-blue mb-2">
-                  NHPC Limited (National Hydroelectric Power Corporation)
+                <h3 className="text-xl text-text-primary mb-2">
+                  NHPC Limited
                 </h3>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-soft-blue/60 mb-4">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted mb-2">
                   <div className="flex items-center gap-1">
                     <Calendar size={16} />
-                    <span>Summer 2024</span>
+                    <span>May 2025 – Jun 2025</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <MapPin size={16} />
-                    <span>Faridabad, Haryana</span>
+                    <span>Faridabad, India</span>
                   </div>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Award size={16} className="text-accent-secondary" />
+                  <span className="text-accent-secondary font-semibold">Best Intern Award</span>
                 </div>
               </div>
             </div>
 
             <div className="space-y-6">
               <div>
-                <h4 className="text-lg font-semibold text-soft-blue mb-3">Project: BackupManager</h4>
-                <p className="text-soft-blue/80 mb-4">
-                  Developed a comprehensive backup management system to automate and streamline data backup processes for critical infrastructure systems.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-soft-blue mb-3">Key Responsibilities</h4>
-                <ul className="space-y-2 text-soft-blue/80">
-                  <li>• Designed and implemented automated backup scheduling system</li>
-                  <li>• Developed user-friendly interface for backup configuration and monitoring</li>
-                  <li>• Integrated error handling and notification systems for backup failures</li>
-                  <li>• Optimized backup processes to reduce system downtime</li>
-                  <li>• Created comprehensive documentation and user guides</li>
+                <h4 className="text-lg font-semibold text-text-primary mb-3">Key Contributions</h4>
+                <ul className="space-y-3 text-text-secondary">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
+                    <span>Deployed <strong className="text-text-primary">BackupManager</strong>, reducing backup processing time by <strong className="text-accent-secondary">50%</strong> by building a Python-based GUI system for automated full and incremental backups.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
+                    <span>Maintained <strong className="text-text-primary">10–15 department-level configurations</strong> with structured logging to enable faster debugging and traceability.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
+                    <span>Productized <strong className="text-text-primary">Script Scheduler</strong>, a GUI-driven Python scheduler using APScheduler and SQLAlchemy to manage up to <strong className="text-accent-secondary">200 tasks</strong>.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
+                    <span>Enabled real-time execution monitoring with an interactive UI, reducing manual supervision effort by approximately <strong className="text-accent-secondary">25%</strong>.</span>
+                  </li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-soft-blue mb-3">Technologies Used</h4>
+                <h4 className="text-lg font-semibold text-text-primary mb-3">Technologies Used</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Python', 'Django', 'PostgreSQL', 'JavaScript', 'HTML/CSS', 'Linux'].map((tech) => (
+                  {['Python', 'Tkinter GUI', 'APScheduler', 'SQLAlchemy', 'Structured Logging'].map((tech) => (
                     <span
                       key={tech}
-                      className="bg-cyan-bright/20 text-cyan-bright px-3 py-1 rounded-full text-sm"
+                      className="bg-accent-primary/10 text-accent-primary px-3 py-1 rounded-full text-sm font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-soft-blue mb-3">Results & Impact</h4>
-                <ul className="space-y-2 text-soft-blue/80">
-                  <li>• Reduced manual backup time by 80% through automation</li>
-                  <li>• Improved backup reliability with 99.9% success rate</li>
-                  <li>• Enhanced system monitoring capabilities</li>
-                  <li>• Received positive feedback from senior engineers and management</li>
-                  <li>• System is currently being used in production environment</li>
-                </ul>
-              </div>
             </div>
           </motion.div>
 
-          {/* Additional Experience Section */}
+          {/* Corporate Lead */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-black/30 border border-cyan-bright/20 rounded-lg p-8"
+            className="bg-bg-card border border-border-theme rounded-lg p-8 transition-colors duration-300"
+            style={{ boxShadow: 'var(--card-shadow)' }}
           >
-            <h2 className="text-2xl font-bold text-cyan-bright mb-6">Other Experience</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-soft-blue mb-2">Freelance Web Developer</h3>
-                <p className="text-soft-blue/60 mb-2">2023 - Present</p>
-                <p className="text-soft-blue/80">
-                  Developed custom web applications for small businesses and startups, focusing on responsive design and user experience.
-                </p>
+            <div className="flex items-start gap-4 mb-4">
+              <div className="bg-accent-soft/10 p-3 rounded-lg">
+                <Award className="text-accent-soft" size={24} />
               </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-soft-blue mb-2">Open Source Contributor</h3>
-                <p className="text-soft-blue/60 mb-2">2022 - Present</p>
-                <p className="text-soft-blue/80">
-                  Active contributor to various open-source projects, particularly in React and Python ecosystems.
-                </p>
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-accent-soft mb-1">
+                  Corporate Lead
+                </h2>
+                <h3 className="text-xl text-text-primary mb-2">
+                  E-Summit 25
+                </h3>
+                <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted">
+                  <div className="flex items-center gap-1">
+                    <Calendar size={16} />
+                    <span>Dec 2024 – Jan 2025</span>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <ul className="space-y-2 text-text-secondary">
+              <li className="flex items-start gap-2">
+                <span className="text-accent-soft mt-1.5 text-xs">▸</span>
+                <span>Secured sponsorships and organized sessions with industry leaders.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-accent-soft mt-1.5 text-xs">▸</span>
+                <span>Received <strong className="text-text-primary">Certificate of Responsibility</strong> – E-Summit 25.</span>
+              </li>
+            </ul>
           </motion.div>
         </motion.div>
       </div>

@@ -1,74 +1,83 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, Brain, Wrench } from 'lucide-react';
+import {
+  Code, Database, Brain, Wrench, Cloud, BookOpen,
+  FileCode, Server, Layers, BarChart3, GitBranch, Container,
+  Monitor, Send, Terminal as TerminalIcon, Cpu, Network, HardDrive
+} from 'lucide-react';
 
 const Skills: React.FC = () => {
   const skillCategories = [
     {
-      title: 'Frontend Development',
-      icon: Code,
-      color: 'text-cyan-bright',
-      skills: [
-        { name: 'React.js', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'JavaScript', level: 95 },
-        { name: 'HTML/CSS', level: 90 },
-        { name: 'Tailwind CSS', level: 85 },
-        { name: 'Next.js', level: 80 },
-      ]
+      title: 'Programming Languages',
+      icon: FileCode,
+      color: 'accent-primary',
+      skills: ['JavaScript', 'Python', 'C++', 'C', 'Java', 'TypeScript']
     },
     {
-      title: 'Backend Development',
-      icon: Database,
-      color: 'text-accent-purple',
-      skills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'Python', level: 90 },
-        { name: 'Django', level: 80 },
-        { name: 'Express.js', level: 85 },
-        { name: 'REST APIs', level: 90 },
-        { name: 'GraphQL', level: 70 },
-      ]
+      title: 'Frontend Development',
+      icon: Monitor,
+      color: 'accent-sub',
+      skills: ['React.js', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap', 'Framer Motion']
+    },
+    {
+      title: 'Backend & APIs',
+      icon: Server,
+      color: 'accent-soft',
+      skills: ['Node.js', 'Express.js', 'Flask', 'Django', 'REST APIs', 'JWT Authentication', 'GraphQL']
     },
     {
       title: 'Databases',
       icon: Database,
-      color: 'text-terminal-green',
-      skills: [
-        { name: 'PostgreSQL', level: 85 },
-        { name: 'MongoDB', level: 80 },
-        { name: 'MySQL', level: 85 },
-        { name: 'Redis', level: 75 },
-        { name: 'SQLite', level: 90 },
-      ]
+      color: 'accent-secondary',
+      skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'MongoDB Atlas', 'SQLAlchemy', 'Redis', 'SQLite']
     },
     {
-      title: 'Machine Learning',
+      title: 'Data Science & ML',
       icon: Brain,
-      color: 'text-cyan-bright',
-      skills: [
-        { name: 'Python', level: 90 },
-        { name: 'TensorFlow', level: 75 },
-        { name: 'Scikit-learn', level: 80 },
-        { name: 'Pandas', level: 85 },
-        { name: 'NumPy', level: 85 },
-        { name: 'Matplotlib', level: 80 },
-      ]
+      color: 'accent-primary',
+      skills: ['Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'PyTorch', 'OpenCV', 'Matplotlib']
     },
     {
-      title: 'Development Tools',
+      title: 'Cloud & DevOps',
+      icon: Cloud,
+      color: 'accent-soft',
+      skills: ['AWS (EC2, S3, IAM, Lambda)', 'API Gateway', 'Docker', 'Linux', 'CI/CD']
+    },
+    {
+      title: 'Tools & Platforms',
       icon: Wrench,
-      color: 'text-accent-purple',
-      skills: [
-        { name: 'Git/GitHub', level: 90 },
-        { name: 'Docker', level: 75 },
-        { name: 'VS Code', level: 95 },
-        { name: 'Linux', level: 80 },
-        { name: 'AWS', level: 70 },
-        { name: 'Postman', level: 85 },
-      ]
-    }
+      color: 'accent-sub',
+      skills: ['Git', 'GitHub', 'Postman', 'ThunderClient', 'VS Code', 'Power BI', 'Tableau']
+    },
+    {
+      title: 'Core CS Concepts',
+      icon: BookOpen,
+      color: 'accent-secondary',
+      skills: ['Data Structures & Algorithms', 'OOP', 'Operating Systems', 'DBMS', 'Computer Networks', 'Software Engineering', 'SDLC']
+    },
   ];
+
+  const colorMap: Record<string, string> = {
+    'accent-primary': 'text-accent-primary bg-accent-primary/10 border-accent-primary/20',
+    'accent-sub': 'text-accent-sub bg-accent-sub/10 border-accent-sub/20',
+    'accent-soft': 'text-accent-soft bg-accent-soft/10 border-accent-soft/20',
+    'accent-secondary': 'text-accent-secondary bg-accent-secondary/10 border-accent-secondary/20',
+  };
+
+  const iconColorMap: Record<string, string> = {
+    'accent-primary': 'text-accent-primary',
+    'accent-sub': 'text-accent-sub',
+    'accent-soft': 'text-accent-soft',
+    'accent-secondary': 'text-accent-secondary',
+  };
+
+  const bgMap: Record<string, string> = {
+    'accent-primary': 'bg-accent-primary/10',
+    'accent-sub': 'bg-accent-sub/10',
+    'accent-soft': 'bg-accent-soft/10',
+    'accent-secondary': 'bg-accent-secondary/10',
+  };
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -80,98 +89,117 @@ const Skills: React.FC = () => {
         >
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-accent-purple">Skills</span> & Technologies
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+              <span className="text-accent-sub">Skills</span> & Technologies
             </h1>
-            <p className="text-xl text-soft-blue/80">
+            <p className="text-xl text-text-secondary">
               My technical expertise across different domains
             </p>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          {/* Skills Grid - Icon Tag Layout */}
+          <div className="grid md:grid-cols-2 gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: categoryIndex * 0.1 }}
-                className="bg-black/30 border border-cyan-bright/20 rounded-lg p-6"
+                transition={{ delay: categoryIndex * 0.08 }}
+                whileHover={{ y: -3 }}
+                className="bg-bg-card border border-border-theme rounded-xl p-6 transition-all duration-300 hover:shadow-card-hover"
+                style={{ boxShadow: 'var(--card-shadow)' }}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`bg-${category.color.split('-')[1]}/20 p-2 rounded-lg`}>
-                    <category.icon className={category.color} size={24} />
+                <div className="flex items-center gap-3 mb-5">
+                  <div className={`${bgMap[category.color]} p-2.5 rounded-lg`}>
+                    <category.icon className={iconColorMap[category.color]} size={22} />
                   </div>
-                  <h2 className="text-xl font-bold text-soft-blue">{category.title}</h2>
+                  <h2 className="text-lg font-bold text-text-primary">{category.title}</h2>
                 </div>
 
-                <div className="space-y-4">
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
-                      className="space-y-2"
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: categoryIndex * 0.08 + skillIndex * 0.03 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className={`${colorMap[category.color]} border px-3 py-1.5 rounded-lg text-sm font-medium cursor-default transition-all duration-200`}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-soft-blue font-medium">{skill.name}</span>
-                        <span className="text-soft-blue/60 text-sm">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ delay: (categoryIndex * 0.1) + (skillIndex * 0.05) + 0.2, duration: 0.8 }}
-                          className={`h-2 rounded-full bg-gradient-to-r from-cyan-bright to-accent-purple`}
-                        />
-                      </div>
-                    </motion.div>
+                      {skill}
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Additional Skills */}
+          {/* Relevant Coursework */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="bg-black/30 border border-cyan-bright/20 rounded-lg p-8"
+            className="bg-bg-card border border-border-theme rounded-xl p-8"
+            style={{ boxShadow: 'var(--card-shadow)' }}
           >
-            <h2 className="text-2xl font-bold text-cyan-bright mb-6">Additional Skills</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <h3 className="text-lg font-semibold text-soft-blue mb-3">Soft Skills</h3>
-                <ul className="space-y-2 text-soft-blue/80">
-                  <li>• Problem Solving</li>
-                  <li>• Team Collaboration</li>
-                  <li>• Communication</li>
-                  <li>• Leadership</li>
-                  <li>• Time Management</li>
-                </ul>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-accent-primary/10 p-2.5 rounded-lg">
+                <BookOpen className="text-accent-primary" size={22} />
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-soft-blue mb-3">Methodologies</h3>
-                <ul className="space-y-2 text-soft-blue/80">
-                  <li>• Agile Development</li>
-                  <li>• Test-Driven Development</li>
-                  <li>• CI/CD</li>
-                  <li>• Code Review</li>
-                  <li>• Documentation</li>
-                </ul>
+              <h2 className="text-xl font-bold text-text-primary">Relevant Coursework</h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                'Data Structures & Algorithms',
+                'Database Management Systems',
+                'Object-Oriented Programming',
+                'Operating Systems',
+                'Computer Networks',
+                'Software Engineering',
+                'Data Analytics',
+                'Software Development Life Cycle'
+              ].map((course) => (
+                <span
+                  key={course}
+                  className="bg-bg-section border border-border-theme text-text-secondary px-3 py-1.5 rounded-lg text-sm font-medium"
+                >
+                  {course}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Currently Learning */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="bg-bg-card border border-border-theme rounded-xl p-8"
+            style={{ boxShadow: 'var(--card-shadow)' }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-accent-soft/10 p-2.5 rounded-lg">
+                <Cloud className="text-accent-soft" size={22} />
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-soft-blue mb-3">Currently Learning</h3>
-                <ul className="space-y-2 text-soft-blue/80">
-                  <li>• Kubernetes</li>
-                  <li>• Microservices</li>
-                  <li>• DevOps</li>
-                  <li>• System Design</li>
-                  <li>• Cloud Architecture</li>
-                </ul>
-              </div>
+              <h2 className="text-xl font-bold text-text-primary">Currently Learning</h2>
+              <span className="text-xs text-accent-soft font-semibold ml-auto bg-accent-soft/10 px-3 py-1 rounded-full">In Progress</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                'Kubernetes',
+                'Microservices',
+                'DevOps Pipelines',
+                'System Design',
+                'Cloud Architecture',
+                'AWS Advanced Services'
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="bg-accent-soft/10 border border-accent-soft/20 text-accent-soft px-3 py-1.5 rounded-lg text-sm font-medium"
+                >
+                  {skill}
+                </span>
+              ))}
             </div>
           </motion.div>
         </motion.div>

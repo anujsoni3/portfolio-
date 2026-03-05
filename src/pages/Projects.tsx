@@ -1,73 +1,79 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Code } from 'lucide-react';
+import { ExternalLink, Github, Code, Microscope, Mic, AlertTriangle, UtensilsCrossed } from 'lucide-react';
 
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'BackupManager System',
-      description: 'Comprehensive backup management system developed during NHPC internship. Automates backup processes with scheduling, monitoring, and error handling capabilities.',
-      tech: ['Python', 'Django', 'PostgreSQL', 'JavaScript', 'Linux'],
-      category: 'Enterprise Software',
-      status: 'Production',
-      highlights: ['80% reduction in manual backup time', '99.9% backup success rate', 'Currently used in production']
+      title: 'MediScopeDiffusion',
+      subtitle: '3D Diffusion-Based Medical Image Classifier',
+      description: 'A guided 3D latent-diffusion architecture that integrates global and ROI-specific priors through Dense Guidance Maps and Feature Priors, enabling full-volume feature learning beyond traditional patch-based SOTA approaches.',
+      tech: ['Python', 'PyTorch', 'Diffusion Models', '3D CT Scans', 'Dense Guidance Maps'],
+      category: 'Research Project',
+      icon: Microscope,
+      status: 'Research',
+      highlights: [
+        '75% accuracy, 95% sensitivity, 77.55 F1-score, and 0.79 ROC-AUC on real 3D CT scans',
+        'Performance comparable to larger ViT-based models with significantly lighter CNN backbone',
+        'Explores guided diffusion networks for full-scan 3D CT classification'
+      ]
     },
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with user authentication, product management, shopping cart, and payment integration.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Express', 'Stripe API'],
-      category: 'Web Application',
+      title: 'SmartAuction',
+      subtitle: 'Voice-Based Real-Time Auction System',
+      description: 'A voice-first real-time auction platform improving accessibility and bid processing. Designed a voice-controlled bidding workflow enabling users to place bids and track auctions.',
+      tech: ['Flask', 'MongoDB', 'REST APIs', 'OmniDimension', 'Deepgram STT', 'Google Gemini 2.5 Flash', 'React', 'TypeScript'],
+      category: 'Full Stack + AI',
+      icon: Mic,
       status: 'Completed',
-      github: 'https://github.com/anujsoni/ecommerce-platform',
-      demo: 'https://ecommerce-demo.vercel.app',
-      highlights: ['Responsive design', 'Secure payment processing', 'Admin dashboard']
+      github: '#',
+      demo: '#',
+      highlights: [
+        'Reduced bidding interaction time by 40% with voice-controlled workflow',
+        'Processed voice commands with <500ms latency using contextual conversational flows',
+        'Integrated OmniDimension Voice Agent and Deepgram Speech-to-Text'
+      ]
     },
     {
-      title: 'ML Stock Predictor',
-      description: 'Machine learning model to predict stock prices using historical data and technical indicators with interactive visualization.',
-      tech: ['Python', 'TensorFlow', 'Pandas', 'Matplotlib', 'Streamlit'],
-      category: 'Machine Learning',
+      title: 'FixMyRoad',
+      subtitle: 'Pothole Detection & Reporting System',
+      description: 'An AI-powered system for detecting, mapping, and reporting road defects. Refined an AI service detecting potholes from user images with severity-based prioritization.',
+      tech: ['Flask', 'Python', 'MongoDB Atlas', 'Roboflow API', 'OpenCV', 'scikit-learn', 'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Bcrypt'],
+      category: 'AI / Web Application',
+      icon: AlertTriangle,
       status: 'Completed',
-      github: 'https://github.com/anujsoni/stock-predictor',
-      demo: 'https://stock-predictor-ml.streamlit.app',
-      highlights: ['LSTM neural networks', 'Real-time predictions', 'Interactive charts']
+      github: '#',
+      demo: '#',
+      highlights: [
+        'Attained 85–90% detection accuracy for pothole classification',
+        'Lowered false reports by 30% through secure role-based access and admin verification',
+        'Severity-based prioritization for faster road repairs'
+      ]
     },
     {
-      title: 'Task Management App',
-      description: 'Collaborative task management application with real-time updates, team collaboration features, and progress tracking.',
-      tech: ['React', 'TypeScript', 'Firebase', 'Tailwind CSS'],
+      title: 'Restoran',
+      subtitle: 'Restaurant Website',
+      description: 'A responsive food ordering platform with optimized navigation and ordering flow. Implemented mobile-first UI to streamline menu browsing and checkout.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'EmailJS API'],
       category: 'Web Application',
-      status: 'In Progress',
-      github: 'https://github.com/anujsoni/task-manager',
-      highlights: ['Real-time collaboration', 'Drag & drop interface', 'Team analytics']
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'Interactive weather dashboard with location-based forecasts, historical data visualization, and weather alerts.',
-      tech: ['React', 'Chart.js', 'OpenWeather API', 'CSS3'],
-      category: 'Web Application',
+      icon: UtensilsCrossed,
       status: 'Completed',
-      github: 'https://github.com/anujsoni/weather-dashboard',
-      demo: 'https://weather-dashboard-anuj.netlify.app',
-      highlights: ['7-day forecasts', 'Interactive maps', 'Weather alerts']
+      github: '#',
+      demo: '#',
+      highlights: [
+        'Improved page responsiveness by 80–90% with API-driven order handling',
+        'Mobile-first UI for streamlined menu browsing and checkout',
+        'Optimized client-side rendering for speed'
+      ]
     },
-    {
-      title: 'Chat Application',
-      description: 'Real-time chat application with multiple rooms, file sharing, and user presence indicators.',
-      tech: ['Node.js', 'Socket.io', 'React', 'MongoDB', 'Express'],
-      category: 'Web Application',
-      status: 'Completed',
-      github: 'https://github.com/anujsoni/chat-app',
-      highlights: ['Real-time messaging', 'File sharing', 'Multiple chat rooms']
-    }
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Production': return 'text-terminal-green';
-      case 'Completed': return 'text-cyan-bright';
-      case 'In Progress': return 'text-accent-purple';
-      default: return 'text-soft-blue/60';
+      case 'Research': return 'text-accent-sub';
+      case 'Completed': return 'text-terminal-success';
+      case 'In Progress': return 'text-accent-secondary';
+      default: return 'text-text-muted';
     }
   };
 
@@ -81,10 +87,10 @@ const Projects: React.FC = () => {
         >
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-accent-purple">Projects</span> & Work
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+              <span className="text-accent-sub">Projects</span> & Work
             </h1>
-            <p className="text-xl text-soft-blue/80">
+            <p className="text-xl text-text-secondary">
               A showcase of my development projects and technical implementations
             </p>
           </div>
@@ -97,18 +103,26 @@ const Projects: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-black/30 border border-cyan-bright/20 rounded-lg p-6 hover:border-cyan-bright/50 transition-all duration-200"
+                whileHover={{ y: -5 }}
+                className="bg-bg-card border border-border-theme rounded-lg p-6 hover:shadow-card-hover transition-all duration-300"
+                style={{ boxShadow: 'var(--card-shadow)' }}
               >
                 <div className="space-y-4">
                   {/* Project Header */}
                   <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="text-xl font-bold text-soft-blue mb-1">{project.title}</h3>
-                      <div className="flex items-center gap-3 text-sm">
-                        <span className="text-soft-blue/60">{project.category}</span>
-                        <span className={`${getStatusColor(project.status)} font-medium`}>
-                          {project.status}
-                        </span>
+                    <div className="flex items-start gap-3">
+                      <div className="bg-accent-primary/10 p-2 rounded-lg mt-0.5">
+                        <project.icon className="text-accent-primary" size={20} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-text-primary mb-0.5">{project.title}</h3>
+                        <p className="text-sm text-text-muted italic mb-1">{project.subtitle}</p>
+                        <div className="flex items-center gap-3 text-sm">
+                          <span className="text-text-muted">{project.category}</span>
+                          <span className={`${getStatusColor(project.status)} font-medium`}>
+                            {project.status}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -117,9 +131,9 @@ const Projects: React.FC = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-soft-blue/60 hover:text-cyan-bright transition-colors"
+                          className="text-text-muted hover:text-accent-primary transition-colors"
                         >
-                          <Github size={20} />
+                          <Github size={18} />
                         </a>
                       )}
                       {project.demo && (
@@ -127,27 +141,27 @@ const Projects: React.FC = () => {
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-soft-blue/60 hover:text-cyan-bright transition-colors"
+                          className="text-text-muted hover:text-accent-primary transition-colors"
                         >
-                          <ExternalLink size={20} />
+                          <ExternalLink size={18} />
                         </a>
                       )}
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-soft-blue/80 leading-relaxed">
+                  <p className="text-text-secondary leading-relaxed text-sm">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
                   <div>
-                    <h4 className="text-sm font-semibold text-soft-blue mb-2">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-1.5">
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="bg-cyan-bright/20 text-cyan-bright px-2 py-1 rounded text-xs"
+                          className="bg-accent-primary/10 text-accent-primary px-2 py-0.5 rounded text-xs font-medium"
                         >
                           {tech}
                         </span>
@@ -157,11 +171,12 @@ const Projects: React.FC = () => {
 
                   {/* Highlights */}
                   <div>
-                    <h4 className="text-sm font-semibold text-soft-blue mb-2">Key Highlights</h4>
+                    <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Key Highlights</h4>
                     <ul className="space-y-1">
                       {project.highlights.map((highlight, idx) => (
-                        <li key={idx} className="text-sm text-soft-blue/70">
-                          • {highlight}
+                        <li key={idx} className="text-sm text-text-secondary flex items-start gap-1.5">
+                          <span className="text-accent-secondary mt-1 text-xs">▸</span>
+                          <span>{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -176,18 +191,20 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="text-center bg-black/30 border border-cyan-bright/20 rounded-lg p-8"
+            className="text-center bg-bg-card border border-border-theme rounded-lg p-8"
+            style={{ boxShadow: 'var(--card-shadow)' }}
           >
-            <Code className="text-cyan-bright mx-auto mb-4" size={48} />
-            <h2 className="text-2xl font-bold text-soft-blue mb-4">Want to see more?</h2>
-            <p className="text-soft-blue/80 mb-6">
+            <Code className="text-accent-primary mx-auto mb-4" size={48} />
+            <h2 className="text-2xl font-bold text-text-primary mb-4">Want to see more?</h2>
+            <p className="text-text-secondary mb-6">
               Check out my GitHub profile for more projects and contributions to open source.
             </p>
             <a
-              href="https://github.com/anujsoni"
+              href="https://github.com/anujsoni3"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent-purple hover:bg-accent-purple/80 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
+              className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
+              style={{ backgroundColor: 'var(--btn-primary-bg)' }}
             >
               <Github size={20} />
               View GitHub Profile

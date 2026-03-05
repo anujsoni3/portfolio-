@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Navigation from './Navigation';
+import CardNav from './CardNav';
 import Footer from './Footer';
 
 interface LayoutProps {
@@ -16,8 +16,8 @@ const Layout: React.FC<LayoutProps> = ({ children, userName }) => {
       transition={{ duration: 0.2 }}
       className="min-h-screen flex flex-col"
     >
-      <Navigation userName={userName} />
-      <main className="flex-1">
+      <CardNav userName={userName} />
+      <main className="flex-1 pt-[72px]">
         {children}
       </main>
       <Footer />
