@@ -37,8 +37,8 @@
   --btn-secondary-hover-bg: rgba(43, 47, 119, 0.08);
 
   --nav-bg: rgba(246, 244, 241, 0.85);
-  --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  --card-shadow-hover: 0 18px 45px rgba(0,0,0,0.12);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.12);
 
   --gradient-bg: linear-gradient(120deg, #F6F4F1, #ECE9E4, #F6F4F1);
 }
@@ -76,8 +76,8 @@
   --btn-secondary-hover-bg: rgba(124, 138, 255, 0.12);
 
   --nav-bg: rgba(13, 17, 23, 0.85);
-  --card-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  --card-shadow-hover: 0 18px 45px rgba(0,0,0,0.4);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.4);
 
   --gradient-bg: linear-gradient(120deg, #0D1117, #161B22, #0D1117);
 }
@@ -160,11 +160,47 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
+/* ========== GlowCard — MagicBento-style border glow ========== */
+.glow-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-color: 132, 0, 255;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.glow-card--border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: radial-gradient(300px circle at var(--glow-x) var(--glow-y),
+      rgba(var(--glow-color), calc(var(--glow-intensity) * 0.85)) 0%,
+      rgba(var(--glow-color), calc(var(--glow-intensity) * 0.4)) 30%,
+      transparent 60%);
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.glow-card:hover {
+  box-shadow: 0 4px 20px rgba(var(--glow-color), 0.15),
+    0 0 40px rgba(var(--glow-color), 0.08);
+}
+
 /* Animated gradient background */
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }

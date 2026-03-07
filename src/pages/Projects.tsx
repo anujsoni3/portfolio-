@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Code, Microscope, Mic, AlertTriangle, UtensilsCrossed } from 'lucide-react';
+import GlowCard from '../components/GlowCard';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -12,6 +13,7 @@ const Projects: React.FC = () => {
       category: 'Research Project',
       icon: Microscope,
       status: 'Research',
+      glowColor: '140, 122, 230',
       highlights: [
         '75% accuracy, 95% sensitivity, 77.55 F1-score, and 0.79 ROC-AUC on real 3D CT scans',
         'Performance comparable to larger ViT-based models with significantly lighter CNN backbone',
@@ -26,6 +28,7 @@ const Projects: React.FC = () => {
       category: 'Full Stack + AI',
       icon: Mic,
       status: 'Completed',
+      glowColor: '124, 138, 255',
       github: '#',
       demo: '#',
       highlights: [
@@ -42,6 +45,7 @@ const Projects: React.FC = () => {
       category: 'AI / Web Application',
       icon: AlertTriangle,
       status: 'Completed',
+      glowColor: '194, 91, 42',
       github: '#',
       demo: '#',
       highlights: [
@@ -58,6 +62,7 @@ const Projects: React.FC = () => {
       category: 'Web Application',
       icon: UtensilsCrossed,
       status: 'Completed',
+      glowColor: '47, 111, 109',
       github: '#',
       demo: '#',
       highlights: [
@@ -72,7 +77,6 @@ const Projects: React.FC = () => {
     switch (status) {
       case 'Research': return 'text-accent-sub';
       case 'Completed': return 'text-terminal-success';
-      case 'In Progress': return 'text-accent-secondary';
       default: return 'text-text-muted';
     }
   };
@@ -103,112 +107,86 @@ const Projects: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-bg-card border border-border-theme rounded-lg p-6 hover:shadow-card-hover transition-all duration-300"
-                style={{ boxShadow: 'var(--card-shadow)' }}
               >
-                <div className="space-y-4">
-                  {/* Project Header */}
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-3">
-                      <div className="bg-accent-primary/10 p-2 rounded-lg mt-0.5">
-                        <project.icon className="text-accent-primary" size={20} />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-text-primary mb-0.5">{project.title}</h3>
-                        <p className="text-sm text-text-muted italic mb-1">{project.subtitle}</p>
-                        <div className="flex items-center gap-3 text-sm">
-                          <span className="text-text-muted">{project.category}</span>
-                          <span className={`${getStatusColor(project.status)} font-medium`}>
-                            {project.status}
-                          </span>
+                <GlowCard
+                  glowColor={project.glowColor}
+                  className="bg-bg-card border border-border-theme rounded-lg p-6 h-full"
+                  style={{ boxShadow: 'var(--card-shadow)' }}
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start gap-3">
+                        <div className="bg-accent-primary/10 p-2 rounded-lg mt-0.5">
+                          <project.icon className="text-accent-primary" size={20} />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-text-primary mb-0.5">{project.title}</h3>
+                          <p className="text-sm text-text-muted italic mb-1">{project.subtitle}</p>
+                          <div className="flex items-center gap-3 text-sm">
+                            <span className="text-text-muted">{project.category}</span>
+                            <span className={`${getStatusColor(project.status)} font-medium`}>{project.status}</span>
+                          </div>
                         </div>
                       </div>
+                      <div className="flex items-center gap-2">
+                        {project.github && (
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-accent-primary transition-colors">
+                            <Github size={18} />
+                          </a>
+                        )}
+                        {project.demo && (
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-accent-primary transition-colors">
+                            <ExternalLink size={18} />
+                          </a>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-text-muted hover:text-accent-primary transition-colors"
-                        >
-                          <Github size={18} />
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-text-muted hover:text-accent-primary transition-colors"
-                        >
-                          <ExternalLink size={18} />
-                        </a>
-                      )}
+                    <p className="text-text-secondary leading-relaxed text-sm">{project.description}</p>
+                    <div>
+                      <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Tech Stack</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tech.map((tech) => (
+                          <span key={tech} className="bg-accent-primary/10 text-accent-primary px-2 py-0.5 rounded text-xs font-medium">{tech}</span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-text-secondary leading-relaxed text-sm">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div>
-                    <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="bg-accent-primary/10 text-accent-primary px-2 py-0.5 rounded text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    <div>
+                      <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Key Highlights</h4>
+                      <ul className="space-y-1">
+                        {project.highlights.map((h, idx) => (
+                          <li key={idx} className="text-sm text-text-secondary flex items-start gap-1.5">
+                            <span className="text-accent-secondary mt-1 text-xs">▸</span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  {/* Highlights */}
-                  <div>
-                    <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Key Highlights</h4>
-                    <ul className="space-y-1">
-                      {project.highlights.map((highlight, idx) => (
-                        <li key={idx} className="text-sm text-text-secondary flex items-start gap-1.5">
-                          <span className="text-accent-secondary mt-1 text-xs">▸</span>
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                </GlowCard>
               </motion.div>
             ))}
           </div>
 
           {/* GitHub CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="text-center bg-bg-card border border-border-theme rounded-lg p-8"
-            style={{ boxShadow: 'var(--card-shadow)' }}
-          >
-            <Code className="text-accent-primary mx-auto mb-4" size={48} />
-            <h2 className="text-2xl font-bold text-text-primary mb-4">Want to see more?</h2>
-            <p className="text-text-secondary mb-6">
-              Check out my GitHub profile for more projects and contributions to open source.
-            </p>
-            <a
-              href="https://github.com/anujsoni3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
-              style={{ backgroundColor: 'var(--btn-primary-bg)' }}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+            <GlowCard
+              glowColor="124, 138, 255"
+              className="bg-bg-card border border-border-theme rounded-lg p-8 text-center"
+              style={{ boxShadow: 'var(--card-shadow)' }}
             >
-              <Github size={20} />
-              View GitHub Profile
-            </a>
+              <Code className="text-accent-primary mx-auto mb-4" size={48} />
+              <h2 className="text-2xl font-bold text-text-primary mb-4">Want to see more?</h2>
+              <p className="text-text-secondary mb-6">Check out my GitHub profile for more projects and contributions to open source.</p>
+              <a
+                href="https://github.com/anujsoni3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
+                style={{ backgroundColor: 'var(--btn-primary-bg)' }}
+              >
+                <Github size={20} /> View GitHub Profile
+              </a>
+            </GlowCard>
           </motion.div>
         </motion.div>
       </div>

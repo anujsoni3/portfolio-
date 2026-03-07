@@ -140,8 +140,8 @@ const CardNav: React.FC<CardNavProps> = ({ userName }) => {
         <div className="fixed left-1/2 -translate-x-1/2 w-[92%] max-w-[860px] z-[99] top-3 sm:top-5">
             <nav
                 ref={navRef}
-                className="block h-[60px] p-0 rounded-2xl shadow-lg relative overflow-hidden will-change-[height] border border-border-theme backdrop-blur-xl transition-colors duration-300"
-                style={{ backgroundColor: isDark ? 'rgba(13,17,23,0.92)' : 'rgba(255,255,255,0.92)' }}
+                className="block h-[60px] p-0 rounded-2xl shadow-lg relative overflow-hidden will-change-[height] backdrop-blur-xl transition-colors duration-300"
+                style={{ backgroundColor: isDark ? 'rgba(13,17,23,0.92)' : 'rgba(255,255,255,0.92)', boxShadow: isDark ? '0 4px 24px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.06)' : '0 4px 24px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(0,0,0,0.06)' }}
             >
                 {/* Top Bar */}
                 <div className="absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-4 z-[2]">
