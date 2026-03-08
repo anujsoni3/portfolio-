@@ -38,7 +38,7 @@ function App() {
         <CursorEffect />
 
         <Router key="main">
-          <Layout userName={userName}>
+          <Layout>
             <Routes>
               <Route path="/" element={<Home userName={userName} />} />
               <Route path="/about" element={<About />} />

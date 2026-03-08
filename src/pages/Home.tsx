@@ -5,6 +5,7 @@ import { ArrowRight, Code, Database, Brain, Sparkles, Terminal, Zap } from 'luci
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroCLI from '../components/HeroCLI';
+import TechPressure from '../components/TechPressure';
 import { useTheme } from '../context/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -85,8 +86,8 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
       const naturalCX = initRect.left + initRect.width / 2;
       const naturalCY = initRect.top + initRect.height / 2;
 
-      // Pin range
-      const pinScrollLength = window.innerHeight * 2;
+      // Pin range — 0.9x viewport keeps gap tight while animation still plays out
+      const pinScrollLength = window.innerHeight * 0.9;
 
       // GSAP only handles the pin
       pinnedST = ScrollTrigger.create({
@@ -316,6 +317,18 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
         </div>
       </section>
 
+
+
+      {/* ── Tech Stack Pressure Grid ── */}
+      <motion.section
+        className="relative z-10 py-10"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.7 }}
+      >
+        <TechPressure />
+      </motion.section>
 
 
       {/* Call to Action */}

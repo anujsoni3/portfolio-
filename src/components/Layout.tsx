@@ -1,16 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import CardNav from './CardNav';
+import BubbleMenu from './BubbleMenu';
 import Footer from './Footer';
 import { GridScan } from './GridScan';
 import { useTheme } from '../context/ThemeContext';
 
 interface LayoutProps {
   children: React.ReactNode;
-  userName: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, userName }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { isDark } = useTheme();
 
   return (
@@ -41,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({ children, userName }) => {
       </div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        <CardNav userName={userName} />
+        <BubbleMenu />
         <main className="flex-1 pt-[72px]">
           {children}
         </main>

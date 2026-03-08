@@ -26,15 +26,19 @@ const CursorEffect: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    let moveTimeout: NodeJS.Timeout;
+    let moveTimeout: ReturnType<typeof setTimeout>;
 
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setIsMoving(true);
 
-      // Add new star when moving
-      if (Math.random() > 0.7) {
-        setStars(prev => [...prev, createStar(e.clientX, e.clientY)]);
+      // Spawn 1-2 dots per move at higher frequency
+      const count = Math.random() > 0.5 ? 2 : 1;
+      if (Math.random() > 0.4) {
+        setStars(prev => [
+          ...prev,
+          ...Array.from({ length: count }, () => createStar(e.clientX, e.clientY)),
+        ]);
       }
 
       clearTimeout(moveTimeout);
