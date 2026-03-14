@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  Code, Database, Brain, Wrench, Cloud, BookOpen,
+  Database, Brain, Wrench, Cloud, BookOpen,
   FileCode, Server, Monitor
 } from 'lucide-react';
 import GlowCard from '../components/GlowCard';
@@ -125,14 +125,14 @@ const Skills: React.FC = () => {
                     </div>
                     <h2 className="text-lg font-bold text-text-primary">{category.title}</h2>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {category.skills.map((skill, skillIndex) => (
                       <motion.span
                         key={skill}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: categoryIndex * 0.08 + skillIndex * 0.03 }}
-                        className={`${colorMap[category.color]} border px-3 py-1.5 rounded-lg text-sm font-medium cursor-default`}
+                        className={`${colorMap[category.color]} border px-3 py-2 rounded-lg text-sm font-medium cursor-default`}
                       >
                         {skill}
                       </motion.span>
@@ -160,14 +160,14 @@ const Skills: React.FC = () => {
                 </div>
                 <h2 className="text-xl font-bold text-text-primary">Relevant Coursework</h2>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {[
                   'Data Structures & Algorithms', 'Database Management Systems',
                   'Object-Oriented Programming', 'Operating Systems',
                   'Computer Networks', 'Software Engineering',
                   'Data Analytics', 'Software Development Life Cycle'
                 ].map((course) => (
-                  <span key={course} className="bg-bg-section border border-border-theme text-text-secondary px-3 py-1.5 rounded-lg text-sm font-medium">
+                  <span key={course} className="bg-bg-section border border-border-theme text-text-secondary px-3 py-2 rounded-lg text-sm font-medium">
                     {course}
                   </span>
                 ))}
@@ -193,9 +193,9 @@ const Skills: React.FC = () => {
                 <h2 className="text-xl font-bold text-text-primary">Currently Learning</h2>
                 <span className="text-xs text-accent-soft font-semibold ml-auto bg-accent-soft/10 px-3 py-1 rounded-full">In Progress</span>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {['Kubernetes', 'Microservices', 'DevOps Pipelines', 'System Design', 'Cloud Architecture', 'AWS Advanced Services'].map((skill) => (
-                  <span key={skill} className="bg-accent-soft/10 border border-accent-soft/20 text-accent-soft px-3 py-1.5 rounded-lg text-sm font-medium">
+                  <span key={skill} className="bg-accent-soft/10 border border-accent-soft/20 text-accent-soft px-3 py-2 rounded-lg text-sm font-medium">
                     {skill}
                   </span>
                 ))}

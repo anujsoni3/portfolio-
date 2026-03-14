@@ -41,16 +41,16 @@ const StartupCLI: React.FC<StartupCLIProps> = ({ onComplete }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-deep-navy flex items-center justify-center p-4"
+      className="min-h-screen bg-bg-main flex items-center justify-center p-4"
     >
       <div className="w-full max-w-2xl">
-        <div className="bg-black/50 border border-cyan-bright/30 rounded-lg p-6 backdrop-blur-sm">
+        <div className="bg-bg-card border border-border-theme rounded-lg p-6 backdrop-blur-sm">
           <div className="mb-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="ml-4 text-soft-blue/70 text-sm">Terminal</span>
+              <span className="ml-4 text-text-muted text-sm">Terminal</span>
             </div>
           </div>
 
@@ -61,9 +61,9 @@ const StartupCLI: React.FC<StartupCLIProps> = ({ onComplete }) => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="text-terminal-green"
+                className="text-terminal-success"
               >
-                <span className="text-cyan-bright">{'>'}</span> {line}
+                <span className="text-accent-primary">{'>'}</span> {line}
               </motion.div>
             ))}
 
@@ -74,22 +74,22 @@ const StartupCLI: React.FC<StartupCLIProps> = ({ onComplete }) => {
                 transition={{ delay: 0.5 }}
                 className="mt-6"
               >
-                <div className="text-terminal-green mb-2">
-                  <span className="text-cyan-bright">{'>'}</span> What's your name?
+                <div className="text-terminal-success mb-2">
+                  <span className="text-accent-primary">{'>'}</span> What's your name?
                 </div>
                 <form onSubmit={handleSubmit} className="flex items-center gap-2">
-                  <span className="text-accent-purple">anuj@portfolio:~$</span>
+                  <span className="text-accent-primary opacity-80">anuj@portfolio:~$</span>
                   <input
                     type="text"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    className="bg-transparent border-none outline-none text-soft-blue flex-1 caret-cyan-bright"
+                    className="bg-transparent border-none outline-none text-text-primary flex-1 caret-accent-primary"
                     placeholder="Enter your name..."
                     autoFocus
                   />
-                  <span className="text-cyan-bright animate-cursor-blink">|</span>
+                  <span className="text-accent-primary animate-cursor-blink">|</span>
                 </form>
-                <div className="text-soft-blue/60 text-sm mt-2">
+                <div className="text-text-muted text-sm mt-2">
                   Press Enter to continue...
                 </div>
               </motion.div>

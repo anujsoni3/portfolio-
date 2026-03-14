@@ -29,8 +29,8 @@ const Projects: React.FC = () => {
       icon: Mic,
       status: 'Completed',
       glowColor: '124, 138, 255',
-      github: '#',
-      demo: '#',
+      github: 'https://github.com/anujsoni3/AuctionHub',
+      demo: 'https://smart-auction-1213.vercel.app/',
       highlights: [
         'Reduced bidding interaction time by 40% with voice-controlled workflow',
         'Processed voice commands with <500ms latency using contextual conversational flows',
@@ -46,8 +46,8 @@ const Projects: React.FC = () => {
       icon: AlertTriangle,
       status: 'Completed',
       glowColor: '194, 91, 42',
-      github: '#',
-      demo: '#',
+      github: 'https://github.com/anujsoni3/FixMyRoad',
+      demo: 'https://fixmyroad-qft0.onrender.com/',
       highlights: [
         'Attained 85–90% detection accuracy for pothole classification',
         'Lowered false reports by 30% through secure role-based access and admin verification',
@@ -63,8 +63,8 @@ const Projects: React.FC = () => {
       icon: UtensilsCrossed,
       status: 'Completed',
       glowColor: '47, 111, 109',
-      github: '#',
-      demo: '#',
+      github: 'https://github.com/anujsoni3/Foodiee',
+      demo: 'https://codewithshabbir-restoran.netlify.app/',
       highlights: [
         'Improved page responsiveness by 80–90% with API-driven order handling',
         'Mobile-first UI for streamlined menu browsing and checkout',

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import TextPressure from './TextPressure';
+import { useTheme } from '../hooks/useTheme';
+
 
 interface Tech {
     name: string;
@@ -81,6 +82,7 @@ interface TechPressureProps {
 }
 
 const TechPressure: React.FC<TechPressureProps> = ({ className = '' }) => {
+    const { isDark } = useTheme();
     const containerRef = useRef<HTMLDivElement>(null);
     const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
     const mouseRef = useRef({ x: -9999, y: -9999 });
@@ -138,21 +140,54 @@ const TechPressure: React.FC<TechPressureProps> = ({ className = '' }) => {
 
     return (
         <div ref={containerRef} className={`w-full ${className}`}>
-            {/* TextPressure heading */}
-            <div style={{ position: 'relative', height: '56px', maxWidth: '360px', margin: '0 auto 20px' }}>
-                <TextPressure
-                    text="TECH STACK"
-                    flex
-                    alpha={false}
-                    stroke={false}
-                    width
-                    weight
-                    italic
-                    scale={false}
-                    textColor="var(--accent-primary)"
-                    strokeColor="var(--accent-primary)"
-                    minFontSize={12}
-                    maxFontSize={38}
+            {/* Section heading — bold typographic design */}
+            <div className="text-center mb-8 px-4">
+                {/* Small tag badge */}
+                <span
+                    style={{
+                        display: 'inline-block',
+                        marginBottom: '10px',
+                        padding: '3px 14px',
+                        borderRadius: 999,
+                        fontSize: '0.7rem',
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontWeight: 600,
+                        letterSpacing: '0.18em',
+                        textTransform: 'uppercase',
+                        background: isDark ? 'rgba(146,144,195,0.14)' : 'rgba(60,61,55,0.10)',
+                        color: isDark ? '#9290C3' : '#3C3D37',
+                        border: isDark ? '1px solid rgba(146,144,195,0.25)' : '1px solid rgba(60,61,55,0.20)',
+                    }}
+                >
+                    what i work with
+                </span>
+
+                {/* Main title */}
+                <h2
+                    style={{
+                        fontSize: 'clamp(2.4rem, 6vw, 4.2rem)',
+                        fontWeight: 800,
+                        letterSpacing: '-0.02em',
+                        lineHeight: 1,
+                        color: isDark ? '#ECE8FF' : '#181C14',
+                        margin: 0,
+                    }}
+                >
+                    Tech{' '}
+                    <span style={{ color: isDark ? '#9290C3' : '#697565' }}>Stack</span>
+                </h2>
+
+                {/* Gradient underline bar */}
+                <div
+                    style={{
+                        height: 3,
+                        width: 72,
+                        borderRadius: 999,
+                        margin: '12px auto 0',
+                        background: isDark
+                            ? 'linear-gradient(90deg, #535C91, #9290C3, #B8B5E0)'
+                            : 'linear-gradient(90deg, #3C3D37, #697565, #C8BCA4)',
+                    }}
                 />
             </div>
 

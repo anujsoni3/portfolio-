@@ -4,82 +4,102 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Light Mode (default) ========== */
+/* ========== Light Mode (default) — Earthy Palette ========== */
 :root {
-  --bg-main: #F6F4F1;
-  --bg-section: #ECE9E4;
-  --bg-card: #FFFFFF;
-  --border: #E1DED8;
+  /* Backgrounds — warm cream base */
+  --bg-main: #ECDFCC;
+  --bg-section: #E0D5BE;
+  --bg-card: #F5EDD9;
+  --border: #C8BCA4;
 
-  --text-primary: #1C1C1E;
-  --text-secondary: #4B5563;
-  --text-muted: #6B7280;
-  --text-highlight: #2B2F77;
+  /* Text — high-contrast forest black & charcoal */
+  --text-primary: #181C14;
+  --text-secondary: #3C3D37;
+  --text-muted: #697565;
+  --text-highlight: #181C14;
 
-  --accent-primary: #2B2F77;
+  /* Accents — charcoal, sage, amber remain earthy */
+  --accent-primary: #3C3D37;
   --accent-secondary: #C25B2A;
-  --accent-soft: #2F6F6D;
-  --accent-sub: #8C7AE6;
+  --accent-soft: #697565;
+  --accent-sub: #5D4A9C; /* Darker purple for better contrast in light mode */
 
-  --terminal-bg: #F1EFEA;
-  --terminal-success: #2F6F4E;
-  --terminal-info: #2B3A67;
+  /* Terminal */
+  --terminal-bg: #E8DCC8;
+  --terminal-success: #3A5A40;
+  --terminal-info: #3C3D37;
   --terminal-warn: #B45309;
   --terminal-cursor: #C25B2A;
 
-  --accent-primary-glow: rgba(43, 47, 119, 0.25);
-  --accent-sub-glow: rgba(140, 122, 230, 0.25);
-  --terminal-success-glow: rgba(47, 111, 78, 0.25);
+  /* Glows */
+  --accent-primary-glow: rgba(60, 61, 55, 0.22);
+  --accent-sub-glow: rgba(93, 74, 156, 0.22); /* Match darker purple */
+  --terminal-success-glow: rgba(58, 90, 64, 0.22);
+  --glow-color-rgb: 93, 74, 156; /* Dark purple RGB for glow cards */
+  --scrollbar-thumb: rgba(60, 61, 55, 0.4);
+  --scrollbar-thumb-hover: rgba(60, 61, 55, 0.7);
 
-  --btn-primary-bg: #2B2F77;
-  --btn-primary-hover: #3C3FA0;
-  --btn-secondary-border: #2B2F77;
-  --btn-secondary-hover-bg: rgba(43, 47, 119, 0.08);
+  /* Buttons */
+  --btn-primary-bg: #3C3D37;
+  --btn-primary-hover: #181C14;
+  --btn-secondary-border: #3C3D37;
+  --btn-secondary-hover-bg: rgba(60, 61, 55, 0.10);
 
-  --nav-bg: rgba(246, 244, 241, 0.85);
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.12);
+  /* Nav + shadows */
+  --nav-bg: rgba(236, 223, 204, 0.90);
+  --card-shadow: 0 10px 30px rgba(24, 28, 20, 0.10);
+  --card-shadow-hover: 0 18px 45px rgba(24, 28, 20, 0.16);
 
-  --gradient-bg: linear-gradient(120deg, #F6F4F1, #ECE9E4, #F6F4F1);
+  --gradient-bg: linear-gradient(120deg, #ECDFCC, #E0D5BE, #ECDFCC);
 }
 
-/* ========== Dark Mode ========== */
+/* ========== Dark Mode — Navy / Indigo Palette ========== */
 .dark {
-  --bg-main: #0D1117;
-  --bg-section: #161B22;
-  --bg-card: #1C2128;
-  --border: #30363D;
+  /* Backgrounds */
+  --bg-main: #070F2B;
+  --bg-section: #0E1340;
+  --bg-card: #1B1A55;
+  --border: #2D2C72;
 
-  --text-primary: #E6EDF3;
-  --text-secondary: #8B949E;
-  --text-muted: #6E7681;
-  --text-highlight: #A5D6FF;
+  /* Text */
+  --text-primary: #ECE8FF;
+  --text-secondary: #9290C3;
+  --text-muted: #6560A0;
+  --text-highlight: #C4C0FF;
 
-  --accent-primary: #7C8AFF;
+  /* Accents */
+  --accent-primary: #9290C3;
   --accent-secondary: #E8875B;
-  --accent-soft: #56D4CF;
-  --accent-sub: #B8A9F0;
+  --accent-soft: #535C91;
+  --accent-sub: #B8B5E0;
 
-  --terminal-bg: #161B22;
+  /* Terminal */
+  --terminal-bg: #0E1340;
   --terminal-success: #56D49B;
-  --terminal-info: #79C0FF;
+  --terminal-info: #9290C3;
   --terminal-warn: #E3B341;
   --terminal-cursor: #E8875B;
 
-  --accent-primary-glow: rgba(124, 138, 255, 0.3);
-  --accent-sub-glow: rgba(184, 169, 240, 0.3);
-  --terminal-success-glow: rgba(86, 212, 155, 0.3);
+  /* Glows */
+  --accent-primary-glow: rgba(146, 144, 195, 0.30);
+  --accent-sub-glow: rgba(184, 181, 224, 0.28);
+  --terminal-success-glow: rgba(86, 212, 155, 0.28);
+  --glow-color-rgb: 184, 181, 224; /* Sub accent RGB for glow cards */
+  --scrollbar-thumb: rgba(146, 144, 195, 0.4);
+  --scrollbar-thumb-hover: rgba(146, 144, 195, 0.7);
 
-  --btn-primary-bg: #7C8AFF;
-  --btn-primary-hover: #9BA5FF;
-  --btn-secondary-border: #7C8AFF;
-  --btn-secondary-hover-bg: rgba(124, 138, 255, 0.12);
+  /* Buttons */
+  --btn-primary-bg: #535C91;
+  --btn-primary-hover: #9290C3;
+  --btn-secondary-border: #535C91;
+  --btn-secondary-hover-bg: rgba(83, 92, 145, 0.18);
 
-  --nav-bg: rgba(13, 17, 23, 0.85);
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.4);
+  /* Nav + shadows */
+  --nav-bg: rgba(7, 15, 43, 0.92);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.55);
 
-  --gradient-bg: linear-gradient(120deg, #0D1117, #161B22, #0D1117);
+  --gradient-bg: linear-gradient(120deg, #070F2B, #1B1A55, #070F2B);
 }
 
 /* ========== Base Styles ========== */
@@ -102,6 +122,7 @@ body {
 /* ========== Scrollbar ========== */
 .scrollbar-thin {
   scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -113,12 +134,17 @@ body {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: var(--accent-primary-glow);
+  background-color: var(--scrollbar-thumb);
   border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
 }
 
 .scrollbar-thumb-cyan-bright\/30::-webkit-scrollbar-thumb {
-  background-color: var(--accent-primary-glow);
+  background-color: var(--scrollbar-thumb);
   border-radius: 9999px;
 }
 
@@ -136,12 +162,12 @@ body {
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb {
-  background: var(--accent-primary-glow);
+  background: var(--scrollbar-thumb);
   border-radius: 2px;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* ========== Utility Classes ========== */
@@ -165,7 +191,7 @@ body {
   --glow-x: 50%;
   --glow-y: 50%;
   --glow-intensity: 0;
-  --glow-color: 132, 0, 255;
+  --glow-color: var(--glow-color-rgb);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
@@ -210,4 +236,35 @@ body {
   background: var(--gradient-bg);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
+}
+
+/* ========== Wave-hand emoji animation ========== */
+@keyframes wave-hand {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(14deg);
+  }
+
+  30% {
+    transform: rotate(-8deg);
+  }
+
+  45% {
+    transform: rotate(14deg);
+  }
+
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }

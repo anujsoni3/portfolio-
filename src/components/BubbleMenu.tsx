@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Terminal, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 
 type MenuItem = {
     label: string;
@@ -13,13 +13,13 @@ type MenuItem = {
 };
 
 const NAV_ITEMS: MenuItem[] = [
-    { label: 'home', path: '/', rotation: -4, hoverStyles: { bgColor: '#7C8AFF', textColor: '#fff' } },
+    { label: 'home', path: '/', rotation: -4, hoverStyles: { bgColor: '#535C91', textColor: '#fff' } },
     { label: 'about', path: '/about', rotation: 4, hoverStyles: { bgColor: '#E8875B', textColor: '#fff' } },
-    { label: 'experience', path: '/experience', rotation: -5, hoverStyles: { bgColor: '#B8A9F0', textColor: '#fff' } },
-    { label: 'skills', path: '/skills', rotation: 5, hoverStyles: { bgColor: '#56D4CF', textColor: '#111' } },
-    { label: 'projects', path: '/projects', rotation: -4, hoverStyles: { bgColor: '#F7DF1E', textColor: '#111' } },
-    { label: 'achievements', path: '/achievements', rotation: 6, hoverStyles: { bgColor: '#E3B341', textColor: '#111' } },
-    { label: 'contact', path: '/contact', rotation: -4, hoverStyles: { bgColor: '#56D49B', textColor: '#111' } },
+    { label: 'experience', path: '/experience', rotation: -5, hoverStyles: { bgColor: '#9290C3', textColor: '#fff' } },
+    { label: 'skills', path: '/skills', rotation: 5, hoverStyles: { bgColor: '#697565', textColor: '#fff' } },
+    { label: 'projects', path: '/projects', rotation: -4, hoverStyles: { bgColor: '#C25B2A', textColor: '#fff' } },
+    { label: 'achievements', path: '/achievements', rotation: 6, hoverStyles: { bgColor: '#B8B5E0', textColor: '#111' } },
+    { label: 'contact', path: '/contact', rotation: -4, hoverStyles: { bgColor: '#3A5A40', textColor: '#fff' } },
 ];
 
 export default function BubbleMenu() {
@@ -31,8 +31,7 @@ export default function BubbleMenu() {
     const bubblesRef = useRef<(HTMLDivElement | null)[]>([]);
     const labelsRef = useRef<(HTMLSpanElement | null)[]>([]);
 
-    const menuBg = isDark ? 'rgba(22,26,32,0.96)' : 'rgba(255,255,255,0.96)';
-    const textCol = isDark ? '#E6EDF3' : '#1C1C1E';
+    const menuBg = isDark ? 'rgba(7,15,43,0.96)' : 'rgba(236,223,204,0.96)';
 
     // Hide row on mount (no flash)
     useEffect(() => {
@@ -133,12 +132,12 @@ export default function BubbleMenu() {
                     >
                         <span className="block rounded-sm transition-all duration-300"
                             style={{
-                                width: 24, height: 2, background: textCol,
+                                width: 24, height: 2, background: 'var(--text-primary)',
                                 transform: isOpen ? 'translateY(4px) rotate(45deg)' : 'none'
                             }} />
                         <span className="block rounded-sm transition-all duration-300"
                             style={{
-                                width: 24, height: 2, background: textCol,
+                                width: 24, height: 2, background: 'var(--text-primary)',
                                 transform: isOpen ? 'translateY(-4px) rotate(-45deg)' : 'none'
                             }} />
                     </button>
@@ -180,7 +179,7 @@ export default function BubbleMenu() {
                                     fontSize: '0.88rem',
                                     fontWeight: 500,
                                     background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)',
-                                    color: textCol,
+                                    color: 'var(--text-primary)',
                                     willChange: 'transform',
                                     '--rot': `${item.rotation ?? 0}deg`,
                                     '--hbg': item.hoverStyles?.bgColor,

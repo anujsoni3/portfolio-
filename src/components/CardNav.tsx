@@ -1,8 +1,8 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { Link, useLocation } from 'react-router-dom';
 import { Terminal, Sun, Moon, ArrowUpRight } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 
 export interface CardNavItem {
     label: string;
@@ -15,7 +15,7 @@ interface CardNavProps {
     userName: string;
 }
 
-const CardNav: React.FC<CardNavProps> = ({ userName }) => {
+const CardNav: React.FC<CardNavProps> = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const navRef = useRef<HTMLDivElement | null>(null);
@@ -63,7 +63,7 @@ const CardNav: React.FC<CardNavProps> = ({ userName }) => {
         return 260;
     };
 
-    const createTimeline = () => {
+    const createTimeline = useCallback(() => {
         const navEl = navRef.current;
         if (!navEl) return null;
 
@@ -81,7 +81,7 @@ const CardNav: React.FC<CardNavProps> = ({ userName }) => {
         tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out', stagger: 0.08 }, '-=0.1');
 
         return tl;
-    };
+    }, []);
 
     useLayoutEffect(() => {
         const tl = createTimeline();
@@ -91,7 +91,7 @@ const CardNav: React.FC<CardNavProps> = ({ userName }) => {
             tl?.kill();
             tlRef.current = null;
         };
-    }, [isDark]);
+    }, [isDark, createTimeline]);
 
     useLayoutEffect(() => {
         const handleResize = () => {
@@ -116,7 +116,7 @@ const CardNav: React.FC<CardNavProps> = ({ userName }) => {
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [isExpanded]);
+    }, [isExpanded, createTimeline]);
 
     const toggleMenu = () => {
         const tl = tlRef.current;

@@ -64,7 +64,7 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
         setHistory(newHistory);
         setTimeout(() => navigate(`/${cmd}`), 800);
       } else if (typeof commands[cmd as keyof typeof commands] === 'function') {
-        const result = (commands[cmd as keyof typeof commands] as Function)();
+        const result = (commands[cmd as keyof typeof commands] as () => string)();
         newHistory.push(`💡 ${result}`);
         setHistory(newHistory);
       } else if (commands[cmd as keyof typeof commands]) {

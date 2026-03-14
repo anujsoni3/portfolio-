@@ -8,7 +8,7 @@ const Achievements: React.FC = () => {
     {
       platform: 'LeetCode',
       handle: 'soni3anuj',
-      stat: 'Contest Rating: 1833, Top 6.46%',
+      stat: 'Contest Rating: 1798, Top 9.48%',
       detail: '400+ problems across DSA topics, with 600+ submissions.',
       link: 'https://leetcode.com/u/soni3anuj/',
       color: 'text-accent-secondary',
@@ -17,18 +17,18 @@ const Achievements: React.FC = () => {
     {
       platform: 'GeeksforGeeks',
       handle: 'soni3268k',
-      stat: 'Institution Rank: 26, Score: 787',
-      detail: 'Practiced 210+ structured DSA problems.',
+      stat: 'Institution Rank: 43, Score: 566',
+      detail: 'Practiced 180+ structured DSA problems.',
       link: 'https://www.geeksforgeeks.org/user/soni3268k/',
       color: 'text-terminal-success',
       glowColor: '47, 111, 109'
     },
     {
       platform: 'CodeChef',
-      handle: 'anuj14-65',
+      handle: 'muster_door_50',
       stat: '3 Star, Max Rating: 1648',
       detail: 'Global Rank 12,525 and India Rank 11,070 in rated contests.',
-      link: 'https://www.codechef.com/users/anuj14-65',
+      link: 'https://www.codechef.com/users/muster_door_50',
       color: 'text-accent-sub',
       glowColor: '140, 122, 230'
     },

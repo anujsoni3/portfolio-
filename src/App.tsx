@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import StartupCLI from './components/StartupCLI';
 import Layout from './components/Layout';
@@ -13,6 +13,35 @@ import Contact from './pages/Contact';
 import CursorEffect from './components/CursorEffect';
 import { ThemeProvider } from './context/ThemeContext';
 
+const PageTransition = ({ children }: { children: React.ReactNode }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 15 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -15 }}
+    transition={{ duration: 0.3 }}
+  >
+    {children}
+  </motion.div>
+);
+
+const AnimatedRoutes = ({ userName }: { userName: string }) => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home userName={userName} /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/experience" element={<PageTransition><Experience /></PageTransition>} />
+        <Route path="/skills" element={<PageTransition><Skills /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+        <Route path="/achievements" element={<PageTransition><Achievements /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 function App() {
   const [userName, setUserName] = useState<string>('');
   const [showStartup, setShowStartup] = useState(true);
@@ -23,7 +52,6 @@ function App() {
       setUserName(storedName);
       setShowStartup(false);
     }
-
   }, []);
 
   const handleStartupComplete = (name: string) => {
@@ -38,18 +66,15 @@ function App() {
         <CursorEffect />
 
         <Router key="main">
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home userName={userName} />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/achievements" element={<Achievements />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Layout>
+          {showStartup ? (
+            <AnimatePresence mode="wait">
+              <StartupCLI onComplete={handleStartupComplete} key="startup" />
+            </AnimatePresence>
+          ) : (
+            <Layout>
+              <AnimatedRoutes userName={userName} />
+            </Layout>
+          )}
         </Router>
 
       </div>

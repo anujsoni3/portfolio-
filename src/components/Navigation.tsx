@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X, Terminal, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 
 interface NavigationProps {
   userName: string;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ userName }) => {
+const Navigation: React.FC<NavigationProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { isDark, toggleTheme } = useTheme();

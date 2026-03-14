@@ -6,7 +6,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroCLI from '../components/HeroCLI';
 import TechPressure from '../components/TechPressure';
-import { useTheme } from '../context/ThemeContext';
+import GlowCard from '../components/GlowCard';
+import { useTheme } from '../hooks/useTheme';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,12 +25,12 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const { isDark } = useTheme();
 
-  const roles = [
+  const roles = React.useMemo(() => [
     'Full Stack Developer',
     'ML Enthusiast',
     'Problem Solver',
     'Code Architect'
-  ];
+  ], []);
 
   const stats = [
     { label: 'Projects Completed', value: '15+', icon: Code },
@@ -65,7 +66,7 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
       }
     }, 100);
     return () => clearInterval(typeInterval);
-  }, [currentRole]);
+  }, [currentRole, roles]);
 
   // Scroll-driven terminal enlargement
   useEffect(() => {
@@ -201,7 +202,14 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-text-primary"
               >
-                Hi {userName}👋<br />
+                <span>Hi! </span>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    animation: 'wave-hand 2s ease-in-out infinite',
+                    transformOrigin: '70% 70%',
+                  }}
+                >👋</span><br />
                 <span className="text-accent-primary">I'm Anuj Soni</span><br />
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-accent-sub">{displayText}</span>
@@ -258,12 +266,16 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-bg-card border border-border-theme rounded-lg p-3 sm:p-4 text-center backdrop-blur-sm hover:shadow-card-hover transition-all duration-300"
-                  style={{ boxShadow: 'var(--card-shadow)' }}
                 >
-                  <stat.icon className="text-accent-primary mx-auto mb-2" size={20} />
-                  <div className="text-lg sm:text-xl font-bold text-text-primary">{stat.value}</div>
-                  <div className="text-xs text-text-muted">{stat.label}</div>
+                  <GlowCard
+                    glowColor="146, 144, 195"
+                    className="bg-bg-card border border-border-theme rounded-lg p-3 sm:p-4 text-center backdrop-blur-sm transition-all duration-300"
+                    style={{ boxShadow: 'var(--card-shadow)' }}
+                  >
+                    <stat.icon className="text-accent-primary mx-auto mb-2" size={20} />
+                    <div className="text-lg sm:text-xl font-bold text-text-primary">{stat.value}</div>
+                    <div className="text-xs text-text-muted">{stat.label}</div>
+                  </GlowCard>
                 </motion.div>
               ))}
             </motion.div>
@@ -311,7 +323,9 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="flex justify-center"
             >
-              <HeroCLI userName={userName} />
+              <GlowCard glowColor="146, 144, 195" className="rounded-lg w-full">
+                <HeroCLI userName={userName} />
+              </GlowCard>
             </motion.div>
           </div>
         </div>
@@ -335,7 +349,7 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
       <section className="py-12 sm:py-20 px-4 relative z-10">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: isDark ? 'rgba(13,17,23,0.6)' : 'rgba(246,244,241,0.7)' }}
+          style={{ background: isDark ? 'rgba(7,15,43,0.55)' : 'rgba(236,223,204,0.65)' }}
         />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
@@ -343,25 +357,29 @@ const Home: React.FC<HomeProps> = ({ userName }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-bg-card border border-border-theme rounded-lg p-8 sm:p-12 backdrop-blur-md"
-            style={{ boxShadow: 'var(--card-shadow)' }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-4">
-              Ready to build something amazing together?
-            </h2>
-            <p className="text-text-secondary mb-6 sm:mb-8 text-base sm:text-lg">
-              I'm always excited to work on innovative projects and collaborate with fellow developers.
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base"
-                style={{ backgroundColor: 'var(--accent-soft)', boxShadow: '0 4px 14px var(--terminal-success-glow)' }}
-              >
-                <Sparkles size={18} />
-                Let's Connect
-              </Link>
-            </motion.div>
+            <GlowCard
+              glowColor="83, 92, 145"
+              className="bg-bg-card border border-border-theme rounded-xl p-8 sm:p-12 backdrop-blur-md"
+              style={{ boxShadow: 'var(--card-shadow)' }}
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-4">
+                Ready to build something amazing together?
+              </h2>
+              <p className="text-text-secondary mb-6 sm:mb-8 text-base sm:text-lg">
+                I'm always excited to work on innovative projects and collaborate with fellow developers.
+              </p>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base"
+                  style={{ backgroundColor: 'var(--btn-primary-bg)', boxShadow: '0 4px 14px var(--accent-primary-glow)' }}
+                >
+                  <Sparkles size={18} />
+                  Let's Connect
+                </Link>
+              </motion.div>
+            </GlowCard>
           </motion.div>
         </div>
       </section>

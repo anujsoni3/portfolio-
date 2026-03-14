@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
   return (
@@ -7,31 +8,40 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-text-muted text-sm mb-4 md:mb-0">
-            © 2025 Anuj Soni. Built with React & TypeScript.
+            © 2026 Anuj Soni. Built with React & TypeScript.
           </div>
           <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/anujsoni"
+            <motion.a
+              href="https://github.com/anujsoni3"
+              title="GitHub"
+              aria-label="GitHub"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-muted hover:text-accent-primary transition-colors"
+              whileHover={{ scale: 1.2, y: -2 }}
+              className="text-text-muted hover:text-accent-primary transition-colors block"
             >
               <Github size={20} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://linkedin.com/in/anujsoni"
+              title="LinkedIn"
+              aria-label="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-muted hover:text-accent-primary transition-colors"
+              whileHover={{ scale: 1.2, y: -2 }}
+              className="text-text-muted hover:text-accent-primary transition-colors block"
             >
               <Linkedin size={20} />
-            </a>
-            <a
-              href="mailto:anuj@example.com"
-              className="text-text-muted hover:text-accent-primary transition-colors"
+            </motion.a>
+            <motion.a
+              href="mailto:soni3anuj@gmail.com"
+              title="Email"
+              aria-label="Email"
+              whileHover={{ scale: 1.2, y: -2 }}
+              className="text-text-muted hover:text-accent-primary transition-colors block"
             >
               <Mail size={20} />
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>

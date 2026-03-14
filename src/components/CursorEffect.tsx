@@ -75,14 +75,14 @@ const CursorEffect: React.FC = () => {
     <>
       {/* Main cursor */}
       <div
-        className="fixed top-0 left-0 w-6 h-6 pointer-events-none z-50 mix-blend-difference transition-transform duration-100 ease-out"
+        className="fixed top-0 left-0 w-6 h-6 pointer-events-none z-50 transition-transform duration-100 ease-out"
         style={{
           transform: `translate(${position.x - 12}px, ${position.y - 12}px) scale(${isMoving ? 1.2 : 1})`,
         }}
       >
-        <div className="w-full h-full rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-primary-glow)' }}>
+        <div className="w-full h-full rounded-full animate-pulse backdrop-blur-[1px]" style={{ backgroundColor: 'var(--accent-primary-glow)' }}>
           <div
-            className="w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="w-3 h-3 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             style={{ backgroundColor: 'var(--accent-primary)' }}
           />
         </div>

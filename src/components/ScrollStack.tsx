@@ -55,9 +55,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const stackCompletedRef = useRef(false);
     const animationFrameRef = useRef<number | null>(null);
     const lenisRef = useRef<Lenis | null>(null);
-    const cardsRef = useRef<HTMLElement[]>([]);
-    const lastTransformsRef = useRef(new Map<number, any>());
-    const isUpdatingRef = useRef(false);
+    const lastTransformsRef = useRef(new Map<number, { translateY: number; scale: number; rotation: number; blur: number }>());
 
     const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
         if (scrollTop < start) return 0;
@@ -248,7 +246,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
                 smoothWheel: true,
                 touchMultiplier: 2,
                 infinite: false,
-                gestureOrientation: 'vertical' as any,
+                gestureOrientation: 'vertical' as 'vertical' | 'horizontal' | 'both',
                 wheelMultiplier: 1,
                 lerp: 0.1,
                 syncTouch: true,
@@ -284,12 +282,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
                 card.style.marginBottom = `${itemDistance}px`;
             }
             card.style.willChange = 'transform, filter';
-            card.style.transformOrigin = 'top center';
-            card.style.backfaceVisibility = 'hidden';
             card.style.transform = 'translateZ(0)';
-            (card.style as any).webkitTransform = 'translateZ(0)';
+            (card.style as CSSStyleDeclaration & { webkitTransform?: string }).webkitTransform = 'translateZ(0)';
             card.style.perspective = '1000px';
-            (card.style as any).webkitPerspective = '1000px';
+            (card.style as CSSStyleDeclaration & { webkitPerspective?: string }).webkitPerspective = '1000px';
         });
 
         setupLenis();
