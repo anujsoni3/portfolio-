@@ -14,9 +14,10 @@ const CursorEffect: React.FC = () => {
   const [stars, setStars] = useState<Star[]>([]);
   const [isMoving, setIsMoving] = useState(false);
 
+  // Explicitly unique ID to prevent React key collision warnings during rapid spawns
   const createStar = useCallback((x: number, y: number) => {
     return {
-      id: Date.now() + Math.random(),
+      id: Math.random() + performance.now(),
       x: x + (Math.random() - 0.5) * 20,
       y: y + (Math.random() - 0.5) * 20,
       opacity: Math.random() * 0.8 + 0.2,

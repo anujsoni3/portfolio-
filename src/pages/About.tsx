@@ -2,11 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, MapPin, Calendar, Award } from 'lucide-react';
 import GlowCard from '../components/GlowCard';
+import AboutRobot from '../components/AboutRobot';
 
 const About: React.FC = () => {
   return (
     <div className="min-h-screen py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -22,30 +23,57 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Bio Section */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-            <GlowCard
-              glowColor="124, 138, 255"
-              className="bg-bg-card border border-border-theme rounded-lg p-8"
-              style={{ boxShadow: 'var(--card-shadow)' }}
+          {/* Bio & Robot Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-12">
+            {/* My Journey Card */}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}>
+              <GlowCard
+                glowColor="124, 138, 255"
+                className="bg-bg-card border border-border-theme rounded-lg p-8 h-full flex flex-col justify-center relative z-20"
+                style={{ boxShadow: 'var(--card-shadow)' }}
+              >
+                <h2 className="text-2xl font-bold text-accent-primary mb-6">My Journey</h2>
+                <div className="space-y-4 text-text-secondary leading-relaxed relative z-20">
+                  <p>
+                    Hello! I'm Anuj Soni, a passionate Computer Science student at IIIT Nagpur with a strong foundation in full-stack development and machine learning. My journey in technology began with curiosity about how digital systems work, which led me to explore the fascinating intersection of software engineering and artificial intelligence.
+                  </p>
+                  <p>
+                    I specialize in building robust web applications using modern technologies like React, Node.js, Python, and various machine learning frameworks. My experience spans across frontend development, backend architecture, database management, and ML implementations. I believe in writing clean, efficient code that not only works but is also maintainable and scalable.
+                  </p>
+                  <p>
+                    Recently, I completed a software development internship at NHPC Limited, where I developed the BackupManager system - a comprehensive solution that automated backup processes and significantly improved operational efficiency. When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or participating in hackathons.
+                  </p>
+                </div>
+              </GlowCard>
+            </motion.div>
+
+            {/* 3D Robot Mascot (Side Panel) */}
+            <motion.div 
+               className="w-full relative min-h-[400px] flex items-start justify-center z-10 -mt-8 lg:-mt-16"
+               initial={{ opacity: 0, x: 30 }} 
+               animate={{ opacity: 1, x: 0 }} 
+               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold text-accent-primary mb-6">My Journey</h2>
-              <div className="space-y-4 text-text-secondary leading-relaxed">
-                <p>
-                  Hello! I'm Anuj Soni, a passionate Computer Science student at IIIT Nagpur with a strong foundation in full-stack development and machine learning. My journey in technology began with curiosity about how digital systems work, which led me to explore the fascinating intersection of software engineering and artificial intelligence.
-                </p>
-                <p>
-                  I specialize in building robust web applications using modern technologies like React, Node.js, Python, and various machine learning frameworks. My experience spans across frontend development, backend architecture, database management, and ML implementations. I believe in writing clean, efficient code that not only works but is also maintainable and scalable.
-                </p>
-                <p>
-                  Recently, I completed a software development internship at NHPC Limited, where I developed the BackupManager system - a comprehensive solution that automated backup processes and significantly improved operational efficiency. When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or participating in hackathons.
-                </p>
-              </div>
-            </GlowCard>
-          </motion.div>
+               {/* Unrestricted scale layout with a vignette blend to remove harsh edges */}
+               <div 
+                 className="absolute inset-0 pointer-events-auto flex items-center justify-center mix-blend-screen scale-[1.1] md:scale-110 -translate-y-8"
+                 style={{
+                   WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 40%, transparent 65%)',
+                   maskImage: 'radial-gradient(circle at 50% 40%, black 40%, transparent 65%)'
+                 }}
+               >
+                 <AboutRobot />
+               </div>
+               <div className="absolute bottom-4 left-0 w-full text-center pointer-events-none md:hidden">
+                  <span className="text-text-muted/40 text-[10px] tracking-widest font-mono uppercase">
+                    Interactive AI
+                  </span>
+               </div>
+            </motion.div>
+          </div>
 
           {/* Education Section */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}>
             <GlowCard
               glowColor="140, 122, 230"
               className="bg-bg-card border border-border-theme rounded-lg p-8"
@@ -83,7 +111,7 @@ const About: React.FC = () => {
           </motion.div>
 
           {/* Interests Section */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
             <GlowCard
               glowColor="47, 111, 109"
               className="bg-bg-card border border-border-theme rounded-lg p-8"
