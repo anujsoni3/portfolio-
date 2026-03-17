@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
-// @ts-ignore
-import type { Application } from '@splinetool/runtime';
 
 interface AboutRobotProps {
     className?: string;

@@ -803,7 +803,6 @@ export const GridScan: React.FC<GridScanProps> = ({
 
         return () => {
             running = false;
-            const video = videoRef.current;
             if (video) {
                 const stream = video.srcObject as MediaStream | null;
                 if (stream) stream.getTracks().forEach(t => t.stop());
