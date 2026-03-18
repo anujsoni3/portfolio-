@@ -8,8 +8,8 @@ const Achievements: React.FC = () => {
     {
       platform: 'LeetCode',
       handle: 'soni3anuj',
-      stat: 'Contest Rating: 1798, Top 9.48%',
-      detail: '400+ problems across DSA topics, with 600+ submissions.',
+      stat: 'Contest Rating: 1833, Top 6.46%',
+      detail: '400+ problems across DSA topics, with 700+ submissions.',
       link: 'https://leetcode.com/u/soni3anuj/',
       color: 'text-accent-secondary',
       glowColor: '194, 91, 42'
@@ -17,8 +17,8 @@ const Achievements: React.FC = () => {
     {
       platform: 'GeeksforGeeks',
       handle: 'soni3268k',
-      stat: 'Institution Rank: 43, Score: 566',
-      detail: 'Practiced 180+ structured DSA problems.',
+      stat: 'Institution Rank: 26, Score: 787',
+      detail: 'Practiced 210+ structured DSA problems.',
       link: 'https://www.geeksforgeeks.org/user/soni3268k/',
       color: 'text-terminal-success',
       glowColor: '47, 111, 109'
@@ -119,7 +119,7 @@ const Achievements: React.FC = () => {
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-accent-secondary">2nd Runner-Up, Genathon 2.0</h3>
               <p className="text-sm text-text-muted">IIIT Nagpur National Hackathon</p>
-              <p className="text-text-secondary text-sm leading-relaxed">Built Infographix, a call data analytics platform using PostgreSQL and the MERN stack to derive actionable insights on employee performance and customer feedback.</p>
+              <p className="text-text-secondary text-sm leading-relaxed">Built <a href="https://github.com/anujsoni3/Call-Data-Analysis" target="_blank" rel="noopener noreferrer" className="text-accent-secondary hover:underline">Infographix</a>, a call data analytics platform using PostgreSQL and the MERN stack to derive actionable insights on employee performance and customer feedback.</p>
             </div>
           </GlowCard>
 
@@ -137,7 +137,9 @@ const Achievements: React.FC = () => {
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-3">
-                <h3 className="text-lg font-semibold text-accent-soft">GFG 160 Days Challenge</h3>
+                <h3 className="text-lg font-semibold text-accent-soft">
+                  <a href="https://media.geeksforgeeks.org/courses/certificates/57f2d3ab2946bca3a3dd920a80f5f4cc.pdf" target="_blank" rel="noopener noreferrer" className="hover:underline">GFG 160 Days Challenge</a>
+                </h3>
                 <span className="text-xs text-text-muted flex items-center gap-1"><Calendar size={12} /> Mar 2025 – Sep 2025</span>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed">Finished the official GFG 160-Day Challenge, earning certification and official merchandise while systematically covering 160+ curated DSA problems.</p>
@@ -161,7 +163,7 @@ const Achievements: React.FC = () => {
                 <h3 className="text-lg font-semibold text-accent-sub">Corporate Lead, E-Summit 25</h3>
                 <span className="text-xs text-text-muted">Dec 2024 – Jan 2025</span>
               </div>
-              <p className="text-text-secondary text-sm">Secured sponsorships and organized sessions with industry leaders. Certificate of Responsibility – E-Summit 25.</p>
+              <p className="text-text-secondary text-sm">Secured sponsorships and organized sessions with industry leaders. <a href="https://i.postimg.cc/2yM30fw3/certificate-Anuj-Soni-Corporate.png" target="_blank" rel="noopener noreferrer" className="text-accent-sub hover:underline">Certificate of Responsibility – E-Summit 25</a>.</p>
             </div>
           </GlowCard>
         </motion.div>

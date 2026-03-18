@@ -35,7 +35,9 @@ const Experience: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-accent-primary mb-1">Software Development Intern</h2>
-                  <h3 className="text-xl text-text-primary mb-2">NHPC Limited</h3>
+                  <h3 className="text-xl text-text-primary mb-2">
+                    NHPC Limited <span className="text-text-muted text-sm mx-2">|</span> <a href="https://drive.google.com/file/d/12T7DwSBWfFtD0IXNPfM5KQ78vl6NRR_l/view" target="_blank" rel="noopener noreferrer" className="text-accent-secondary text-sm hover:underline">Certificate</a>
+                  </h3>
                   <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted mb-2">
                     <div className="flex items-center gap-1"><Calendar size={16} /><span>May 2025 – Jun 2025</span></div>
                     <div className="flex items-center gap-1"><MapPin size={16} /><span>Faridabad, India</span></div>
@@ -53,7 +55,7 @@ const Experience: React.FC = () => {
                   <ul className="space-y-3 text-text-secondary">
                     <li className="flex items-start gap-2">
                       <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
-                      <span>Deployed <strong className="text-text-primary">BackupManager</strong>, reducing backup processing time by <strong className="text-accent-secondary">50%</strong> by building a Python-based GUI system for automated full and incremental backups.</span>
+                      <span>Deployed <strong><a href="https://github.com/anujsoni3/BackupManager" target="_blank" rel="noopener noreferrer" className="text-text-primary hover:underline hover:text-accent-primary transition-colors">BackupManager</a></strong>, reducing backup processing time by <strong className="text-accent-secondary">50%</strong> by building a Python-based GUI system for automated full and incremental backups.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
@@ -61,7 +63,7 @@ const Experience: React.FC = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-accent-secondary mt-1.5 text-xs">▸</span>
-                      <span>Productized <strong className="text-text-primary">Script Scheduler</strong>, a GUI-driven Python scheduler using APScheduler and SQLAlchemy to manage up to <strong className="text-accent-secondary">200 tasks</strong>.</span>
+                      <span>Productized <strong><a href="https://github.com/anujsoni3/Python-script-scheduler" target="_blank" rel="noopener noreferrer" className="text-text-primary hover:underline hover:text-accent-primary transition-colors">Script Scheduler</a></strong>, a GUI-driven Python scheduler using APScheduler and SQLAlchemy to manage up to <strong className="text-accent-secondary">200 tasks</strong>.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-accent-secondary mt-1.5 text-xs">▸</span>

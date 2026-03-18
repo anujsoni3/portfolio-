@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               <Github size={20} />
             </motion.a>
             <motion.a
-              href="https://linkedin.com/in/anujsoni"
+              href="https://www.linkedin.com/in/anuj-soni-2387b5291/"
               title="LinkedIn"
               aria-label="LinkedIn"
               target="_blank"

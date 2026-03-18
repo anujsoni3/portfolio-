@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
 
   const socialLinks = [
     { icon: Github, label: 'GitHub', href: 'https://github.com/anujsoni3', glowColor: '60, 61, 55', color: 'text-text-primary' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/anujsoni', glowColor: '124, 138, 255', color: 'text-accent-sub' },
+    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/anuj-soni-2387b5291/', glowColor: '124, 138, 255', color: 'text-accent-sub' },
     { icon: Mail, label: 'Email', href: 'mailto:soni3anuj@gmail.com', glowColor: '194, 91, 42', color: 'text-accent-secondary' },
   ];
 
