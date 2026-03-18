@@ -53,8 +53,8 @@ const HeroCLI: React.FC<HeroCLIProps> = ({ userName }) => {
         setHistory(newHistory);
         // Trigger resume download
         const link = document.createElement('a');
-        link.href = '/Anuj_Soni_SDEIntern_Resume.pdf.pdf';
-        link.download = 'Anuj_Soni_Resume.pdf';
+        link.href = '/Anuj-Soni_Resume.pdf';
+        link.download = 'Anuj-Soni_Resume.pdf';
         link.click();
         setTimeout(() => {
           setHistory(prev => [...prev, '✅ Resume downloaded successfully!']);

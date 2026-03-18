@@ -157,8 +157,8 @@ const Contact: React.FC = () => {
                   Download my latest resume to learn more about my experience and skills.
                 </p>
                 <a
-                  href="/Anuj_Soni_SDEIntern_Resume.pdf.pdf"
-                  download="Anuj_Soni_Resume.pdf"
+                  href="/Anuj-Soni_Resume.pdf"
+                  download="Anuj-Soni_Resume.pdf"
                   className="inline-flex items-center gap-2 text-white px-5 py-3 rounded-lg font-semibold transition-all duration-200 text-sm sm:text-base"
                   style={{ backgroundColor: 'var(--btn-primary-bg)' }}
                 >
